@@ -18,6 +18,10 @@ const useStyles = makeStyles(theme => ({
       width: "25ch"
     }
   },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120
+  },
   button: {
     marginTop: theme.spacing(1),
     marginRight: theme.spacing(1)
@@ -42,7 +46,19 @@ export default function VerticalLinearStepper(props) {
   var classes = useStyles();
 
   const [activeStep, setActiveStep] = useState(0);
-  const [form, setForm] = useState([]);
+  const [form, setForm] = useState({
+    nome: "",
+    empresa: "",
+    nacionalidade: "",
+    cpf: "",
+    nascimento: "",
+    email: "",
+    celular: "",
+    genero: "",
+    funcao: "",
+    nok_nome: "",
+    nok_cel: ""
+  });
   const steps = getSteps();
 
   const onChange = e => {
@@ -97,7 +113,6 @@ export default function VerticalLinearStepper(props) {
                 variant="outlined"
                 name="nome"
                 onChange={onChange}
-                value={form.nome && form.nome}
                 InputLabelProps={{
                   shrink: true
                 }}
@@ -107,7 +122,6 @@ export default function VerticalLinearStepper(props) {
                 variant="outlined"
                 name="empresa"
                 onChange={onChange}
-                value={form.empresa && form.empresa}
                 InputLabelProps={{
                   shrink: true
                 }}
@@ -117,7 +131,6 @@ export default function VerticalLinearStepper(props) {
                 variant="outlined"
                 name="nacionalidade"
                 onChange={onChange}
-                value={form.nacionalidade && form.nacionalidade}
                 InputLabelProps={{
                   shrink: true
                 }}
@@ -127,7 +140,6 @@ export default function VerticalLinearStepper(props) {
                 variant="outlined"
                 name="local_nasc"
                 onChange={onChange}
-                value={form.local_nasc && form.local_nasc}
                 InputLabelProps={{
                   shrink: true
                 }}
@@ -137,7 +149,6 @@ export default function VerticalLinearStepper(props) {
                 variant="outlined"
                 name="cpf"
                 onChange={onChange}
-                value={form.cpf && form.cpf}
                 InputLabelProps={{
                   shrink: true
                 }}
@@ -147,7 +158,6 @@ export default function VerticalLinearStepper(props) {
                 variant="outlined"
                 name="nascimento"
                 onChange={onChange}
-                value={form.nascimento && form.nascimento}
                 InputLabelProps={{
                   shrink: true
                 }}
@@ -158,7 +168,6 @@ export default function VerticalLinearStepper(props) {
                 variant="outlined"
                 name="email"
                 onChange={onChange}
-                value={form.email && form.email}
                 InputLabelProps={{
                   shrink: true
                 }}
@@ -168,7 +177,6 @@ export default function VerticalLinearStepper(props) {
                 label="Celular / Cellphone"
                 variant="outlined"
                 onChange={onChange}
-                value={form.celular && form.celular}
                 name="celular"
                 InputLabelProps={{
                   shrink: true
@@ -179,7 +187,6 @@ export default function VerticalLinearStepper(props) {
                 variant="outlined"
                 name="genero"
                 onChange={onChange}
-                value={form.genero && form.genero}
                 InputLabelProps={{
                   shrink: true
                 }}
@@ -189,10 +196,6 @@ export default function VerticalLinearStepper(props) {
                 variant="outlined"
                 name="funcao"
                 onChange={onChange}
-                value={form.funcao && form.funcao}
-                InputLabelProps={{
-                  shrink: true
-                }}
               />
             </form>
           </React.Fragment>
@@ -206,7 +209,6 @@ export default function VerticalLinearStepper(props) {
                 variant="outlined"
                 name="nok_nome"
                 onChange={onChange}
-                value={form.nok_nome && form.nok_nome}
                 InputLabelProps={{
                   shrink: true
                 }}
@@ -216,7 +218,6 @@ export default function VerticalLinearStepper(props) {
                 variant="outlined"
                 name="nok_cel"
                 onChange={onChange}
-                value={form.nok_cel && form.nok_cel}
                 InputLabelProps={{
                   shrink: true
                 }}
