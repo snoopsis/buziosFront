@@ -8,6 +8,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import HowToRegIcon from "@material-ui/icons/HowToReg";
+import LiveTvIcon from "@material-ui/icons/LiveTv";
 
 const theme = createMuiTheme({
   palette: {
@@ -49,12 +50,26 @@ function Appbar() {
             <Toolbar>
               <Typography variant="h6" className={classes.title}>
                 <Link to="/" style={{ color: "#fff", textDecoration: "none" }}>
-                  Buzios
+                  BUZIOS
                 </Link>
               </Typography>
               <Link
+                to="/agenda"
+                style={{
+                  color: "#fff",
+                  textDecoration: "none"
+                }}
+              >
+                {" "}
+                <LiveTvIcon />
+              </Link>
+              <Link
                 to="/chegada"
-                style={{ color: "#fff", textDecoration: "none" }}
+                style={{
+                  color: "#fff",
+                  textDecoration: "none",
+                  marginLeft: 15
+                }}
               >
                 {" "}
                 <HowToRegIcon />

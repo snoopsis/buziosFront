@@ -8,7 +8,8 @@ const Footer = () => {
       style={{
         backgroundColor: "#5f6b72",
         width: "100%",
-        height: 50
+        height: 50,
+        margin: 0
       }}
       align="center"
     >
