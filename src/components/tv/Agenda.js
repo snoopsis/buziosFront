@@ -84,10 +84,10 @@ export default function Canais() {
           <TableHead>
             <TableRow>
               <StyledTableCell>Canal</StyledTableCell>
-              <StyledTableCell align="right">Data</StyledTableCell>
-              <StyledTableCell align="right">Horario</StyledTableCell>
-              <StyledTableCell align="right">Numero</StyledTableCell>
-              <StyledTableCell align="right">Nome</StyledTableCell>
+              <StyledTableCell align="center">Data</StyledTableCell>
+              <StyledTableCell align="center">Horario</StyledTableCell>
+              <StyledTableCell align="center">Numero</StyledTableCell>
+              <StyledTableCell align="center">Nome</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
