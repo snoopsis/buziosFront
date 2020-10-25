@@ -55,7 +55,7 @@ export default function Canais() {
     }
 
     agenda();
-  }, []);
+  }, [agendamentos]);
 
   return (
     <div style={{ marginBottom: 20 }}>
@@ -86,6 +86,7 @@ export default function Canais() {
               <StyledTableCell>Canal</StyledTableCell>
               <StyledTableCell align="center">Data</StyledTableCell>
               <StyledTableCell align="center">Horario</StyledTableCell>
+              <StyledTableCell align="center">Programa</StyledTableCell>
               <StyledTableCell align="center">Numero</StyledTableCell>
               <StyledTableCell align="center">Nome</StyledTableCell>
             </TableRow>
@@ -98,6 +99,7 @@ export default function Canais() {
                 </StyledTableCell>
                 <StyledTableCell align="center">{row.data}</StyledTableCell>
                 <StyledTableCell align="center">{row.horario}</StyledTableCell>
+                <StyledTableCell align="center">{row.programa}</StyledTableCell>
                 <StyledTableCell align="center">{row.numero}</StyledTableCell>
                 <StyledTableCell align="center">{row.nome}</StyledTableCell>
               </StyledTableRow>
