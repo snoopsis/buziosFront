@@ -97,7 +97,8 @@ export default function Canais(props) {
   };
 
   function filtrar() {
-    return lista.filter(item => item.canal.match(escolha.procurar));
+    const regex = new RegExp(escolha.procurar, "gi");
+    return lista.filter(item => item.canal.match(regex));
   }
 
   const notifySuccess = () =>
