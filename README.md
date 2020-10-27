@@ -6,7 +6,9 @@
 <img src="https://imagens.migueldias.net/metereologia.png">
 <br />
 
-<p>Na questão de monitoramento de Voos, o site tem um mecanismo de pesquisa em alguns dos aeroportos Offshore, como Jacarepaguá, Vitoria, Campos, Farol de São Tome e Cabo Frio. Aqui é feita diariamente uma pesquisa onde sempre que surgir um Voo com o prefixo SKBU, automaticamente e criado um registo e feita a publicação no site.</p>
+<h2>Monitoramento de Voos</h2>
+
+<p>O site tem um mecanismo de pesquisa em alguns dos aeroportos Offshore, como Jacarepaguá, Vitoria, Campos, Farol de São Tome e Cabo Frio. Aqui é feita diariamente uma pesquisa onde sempre que surgir um Voo com o prefixo SKBU, automaticamente e criado um registo e feita a publicação no site.</p>
 <br />
 
 <img src="https://imagens.migueldias.net/infovoo.png">
@@ -26,3 +28,10 @@
 <br />
 
 <img src="https://imagens.migueldias.net/formchegada.png">
+
+<h2>Cadastro de pedidos para agendamento de canais</h2>
+
+<p>Existe a bordo um canal flutuante, isto e, um receptor onde a tripulação pode pedir para trocar de canal. Por vezes algum evento, jogo, filme. Antigamente era feito um registro manual em um pequeno caderno. Com esta funcionalidade a pessoa consegue ver todos os canais disponíveis a bordo para escolha e selecionar o de sua preferência, dia, horário e nome do programa pretendido. Além disso ainda pode consultar quem já fez agendamentos para saber se ainda tem disponível o dia e horário.</p>
+<br />
+
+<img src="https://imagens.migueldias.net/ListaCanais.jpg">
