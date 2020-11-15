@@ -67,7 +67,7 @@ export default function VerticalLinearStepper(props) {
 
   const onSubmit = () => {
     axios
-      .post("/buzios/novoMembro", {
+      .post("https://api.migueldias.net/buzios/novoMembro", {
         nome: form.nome,
         empresa: form.empresa,
         nacionalidade: form.nacionalidade + " nascido em " + form.local_nasc,

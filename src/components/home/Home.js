@@ -17,21 +17,21 @@ const Home = () => {
 
   useEffect(() => {
     async function previsao() {
-      const res = await fetch("/buzios/previsao");
+      const res = await fetch("https://api.migueldias.net/buzios/previsao");
       res.json().then((res) => setPrevisao(res));
     }
 
     previsao();
 
     async function voosHojeHms() {
-      const res = await fetch("/buzios/voos");
+      const res = await fetch("https://api.migueldias.net/buzios/voos");
       res.json().then((res) => setAeroTodos(res));
     }
 
     voosHojeHms();
 
     async function details() {
-      const res = await fetch("/buzios/details");
+      const res = await fetch("https://api.migueldias.net/buzios/details");
       res.json().then((res) => setDetails(res));
     }
 

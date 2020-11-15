@@ -72,7 +72,7 @@ export default function Canais(props) {
   const onSubmit = () => {
     // Post Request
     axios
-      .post("/buzios/novoCanal", {
+      .post("https://api.migueldias.net/buzios/novoCanal", {
         canal: escolha.canal,
         numero: escolha.numero,
         nome: escolha.nome,

@@ -50,7 +50,7 @@ export default function Canais() {
 
   useEffect(() => {
     async function agenda() {
-      const res = await fetch("/buzios/canais");
+      const res = await fetch("https://api.migueldias.net/buzios/canais");
       res.json().then((res) => setAgendamentos(res));
     }
 
