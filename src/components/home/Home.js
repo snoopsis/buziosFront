@@ -11,28 +11,28 @@ const Home = () => {
   const [details, setDetails] = useState();
 
   const diaHoje = moment().format("DD/MM/YYYY");
-  let dias = aeroTodos.map(todos => {
+  let dias = aeroTodos.map((todos) => {
     return todos;
   });
 
   useEffect(() => {
     async function previsao() {
-      const res = await fetch("/api/previsao");
-      res.json().then(res => setPrevisao(res));
+      const res = await fetch("/buzios/previsao");
+      res.json().then((res) => setPrevisao(res));
     }
 
     previsao();
 
     async function voosHojeHms() {
-      const res = await fetch("/api/voos");
-      res.json().then(res => setAeroTodos(res));
+      const res = await fetch("/buzios/voos");
+      res.json().then((res) => setAeroTodos(res));
     }
 
     voosHojeHms();
 
     async function details() {
       const res = await fetch("/buzios/details");
-      res.json().then(res => setDetails(res));
+      res.json().then((res) => setDetails(res));
     }
 
     details();
@@ -62,19 +62,19 @@ const Home = () => {
     .add(+4, "Day")
     .format("DD/MM/YYYY");
 
-  const prevHoje = previsao.filter(i => i.data === diaHoje);
-  const prevAmanha = previsao.filter(i => i.data === amanha);
-  const prevDoisDias = previsao.filter(i => i.data === doisDias);
-  const prevTresDias = previsao.filter(i => i.data === tresDias);
-  const prevQuatroDias = previsao.filter(i => i.data === quatroDias);
+  const prevHoje = previsao.filter((i) => i.data === diaHoje);
+  const prevAmanha = previsao.filter((i) => i.data === amanha);
+  const prevDoisDias = previsao.filter((i) => i.data === doisDias);
+  const prevTresDias = previsao.filter((i) => i.data === tresDias);
+  const prevQuatroDias = previsao.filter((i) => i.data === quatroDias);
 
-  const perHoje = parseFloat(prevHoje.map(i => i.ondaPeriodo));
-  const perAmanha = parseFloat(prevAmanha.map(i => i.ondaPeriodo));
-  const perDoisDias = parseFloat(prevDoisDias.map(i => i.ondaPeriodo));
-  const perTresDias = parseFloat(prevTresDias.map(i => i.ondaPeriodo));
-  const perQuatroDias = parseFloat(prevQuatroDias.map(i => i.ondaPeriodo));
+  const perHoje = parseFloat(prevHoje.map((i) => i.ondaPeriodo));
+  const perAmanha = parseFloat(prevAmanha.map((i) => i.ondaPeriodo));
+  const perDoisDias = parseFloat(prevDoisDias.map((i) => i.ondaPeriodo));
+  const perTresDias = parseFloat(prevTresDias.map((i) => i.ondaPeriodo));
+  const perQuatroDias = parseFloat(prevQuatroDias.map((i) => i.ondaPeriodo));
 
-  let heliHoje = dias.filter(res => res.data === diaHoje);
+  let heliHoje = dias.filter((res) => res.data === diaHoje);
 
   return (
     <div>

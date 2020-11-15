@@ -19,6 +19,7 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3",
+    "react-snap": "^1.23.0",
     "react-toastify": "^6.0.9"
   },
   "scripts": {
@@ -42,5 +43,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:6010"
+  "proxy": "https://api.migueldias.net"
 }

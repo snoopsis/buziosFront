@@ -13,35 +13,35 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 
-const StyledTableCell = withStyles(theme => ({
+const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white
+    color: theme.palette.common.white,
   },
   body: {
-    fontSize: 14
-  }
+    fontSize: 14,
+  },
 }))(TableCell);
 
-const StyledTableRow = withStyles(theme => ({
+const StyledTableRow = withStyles((theme) => ({
   root: {
     "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover
-    }
-  }
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
 }))(TableRow);
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     "& > *": {
       margin: theme.spacing(1),
-      width: "25ch"
-    }
+      width: "25ch",
+    },
   },
   table: {
-    width: "100%"
-  }
+    width: "100%",
+  },
 }));
 export default function Canais() {
   const classes = useStyles();
@@ -50,8 +50,8 @@ export default function Canais() {
 
   useEffect(() => {
     async function agenda() {
-      const res = await fetch("/api/canais");
-      res.json().then(res => setAgendamentos(res));
+      const res = await fetch("/buzios/canais");
+      res.json().then((res) => setAgendamentos(res));
     }
 
     agenda();
@@ -92,7 +92,7 @@ export default function Canais() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {agendamentos.map(row => (
+            {agendamentos.map((row) => (
               <StyledTableRow key={row.numero}>
                 <StyledTableCell component="th" scope="row">
                   {row.canal}
