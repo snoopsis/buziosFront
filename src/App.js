@@ -6,6 +6,8 @@ import Appbar from "./components/appbar/Appbar";
 import Chegada from "./components/chegada/Chegada";
 import Canais from "./components/tv/Canais";
 import Agenda from "./components/tv/Agenda";
+import Listagem from "./components/camisas/Listagem";
+import Form from "./components/camisas/Form";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
             <Route exact path="/chegada" component={Chegada} />
             <Route exact path="/canais" component={Canais} />
             <Route exact path="/agenda" component={Agenda} />
+            <Route exact path="/listagem" component={Listagem} />
+            <Route exact path="/form" component={Form} />
           </Switch>
         </Router>
         <Footer />
