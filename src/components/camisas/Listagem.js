@@ -10,6 +10,8 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+import Chip from "@material-ui/core/Chip";
+import Avatar from "@material-ui/core/Avatar";
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -55,6 +57,11 @@ export default function Listagem() {
     agenda();
   }, [lista]);
 
+  const pequeno = lista.filter(i => i.tamanho === "Pequeno");
+  const medio = lista.filter(i => i.tamanho === "Medio");
+  const grande = lista.filter(i => i.tamanho === "Grande");
+  const extra = lista.filter(i => i.tamanho === "Extra Grande");
+
   return (
     <div style={{ marginBottom: 20 }}>
       <Grid
@@ -64,11 +71,67 @@ export default function Listagem() {
         alignItems="center"
         style={{ marginTop: 20 }}
       >
-        <Grid item xs={12}>
+        <Grid item style={{ textAlign: "center" }}>
           <Typography variant="h5">Obrigado!</Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             Seu nome ja esta na listagem.
           </Typography>
+        </Grid>
+      </Grid>
+      <Grid
+        container
+        direction="row"
+        justify="center"
+        alignItems="center"
+        style={{ marginTop: 20 }}
+      >
+        <Grid item>
+          <Chip
+            avatar={<Avatar>{pequeno.length}</Avatar>}
+            label="Pequeno"
+            clickable
+            color="primary"
+            style={{ marginLeft: 10, marginBottom: 10 }}
+          />
+        </Grid>
+        <Grid item>
+          <Chip
+            avatar={<Avatar>{medio.length}</Avatar>}
+            label="Medio"
+            clickable
+            color="primary"
+            style={{
+              marginLeft: 10,
+              marginBottom: 10
+            }}
+          />
+        </Grid>
+        <Grid item>
+          <Chip
+            avatar={<Avatar>{grande.length}</Avatar>}
+            label="Grande"
+            clickable
+            color="primary"
+            style={{ marginLeft: 10, marginBottom: 10 }}
+          />
+        </Grid>
+        <Grid item>
+          <Chip
+            avatar={<Avatar>{extra.length}</Avatar>}
+            label="Extra Grande"
+            clickable
+            color="primary"
+            style={{ marginLeft: 10, marginBottom: 10 }}
+          />
+        </Grid>
+        <Grid item>
+          <Chip
+            avatar={<Avatar>{lista.length}</Avatar>}
+            label="Total"
+            clickable
+            color="secondary"
+            style={{ marginLeft: 10, marginBottom: 10 }}
+          />
         </Grid>
       </Grid>
       <TableContainer component={Paper} style={{ marginTop: 20 }}>

@@ -1,30 +1,42 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
 
 const Footer = () => {
   return (
-    <Box
+    <div
       style={{
-        backgroundColor: "#5f6b72",
-        width: "100%",
-        height: 50,
-        margin: 0
+        backgroundColor: "#fff",
+        width: "100vw",
+        position: "relative",
+        left: "50%",
+        right: "50%",
+        marginLeft: "-50vw",
+        marginRight: "-50vw",
+        marginTop: "15px",
+        height: "55px"
       }}
       align="center"
     >
-      <Typography style={{ color: "#fff", padding: 13 }} variant="subtitle2">
+      <Typography
+        style={{
+          color: "#3c4858",
+          padding: 13,
+          fontFamily: "Roboto",
+          fontSize: "17px"
+        }}
+        variant="subtitle2"
+      >
         created @{" "}
         <a
           href="https://migueldias.net"
-          style={{ textDecoration: "none", color: "#fff" }}
+          style={{ textDecoration: "none", color: "#3c4858" }}
           target="_blank"
           rel="noopener noreferrer"
         >
           migueldias.net
         </a>
       </Typography>
-    </Box>
+    </div>
   );
 };
 

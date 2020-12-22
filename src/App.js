@@ -8,6 +8,7 @@ import Canais from "./components/tv/Canais";
 import Agenda from "./components/tv/Agenda";
 import Listagem from "./components/camisas/Listagem";
 import Form from "./components/camisas/Form";
+import Praticagem from "./components/praticagem/Praticagem";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route exact path="/agenda" component={Agenda} />
             <Route exact path="/listagem" component={Listagem} />
             <Route exact path="/form" component={Form} />
+            <Route exact path="/praticagem" component={Praticagem} />
           </Switch>
         </Router>
         <Footer />
