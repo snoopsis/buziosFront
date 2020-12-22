@@ -89,7 +89,8 @@ const Home = () => {
       (res.data === diaHoje && res.navio.includes("SAPURA")) ||
       res.navio.includes("CBO") ||
       res.navio.includes("SKANDI") ||
-      res.navio.includes("BRAM")
+      res.navio.includes("BRAM") ||
+      res.navio.includes("STARNAV")
   );
 
   return (
