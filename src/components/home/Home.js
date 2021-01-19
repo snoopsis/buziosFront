@@ -90,7 +90,8 @@ const Home = () => {
       res.navio.includes("CBO") ||
       res.navio.includes("SKANDI") ||
       res.navio.includes("BRAM") ||
-      res.navio.includes("STARNAV")
+      res.navio.includes("STARNAV") ||
+      res.navio.includes("SEVEN")
   );
 
   return (

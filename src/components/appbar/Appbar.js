@@ -49,9 +49,12 @@ function Appbar() {
           <AppBar position="fixed">
             <Toolbar>
               <Typography variant="h6" className={classes.title}>
-                <Link to="/" style={{ color: "#fff", textDecoration: "none" }}>
+                <a
+                  href="https://buzios.migueldias.net"
+                  style={{ color: "#fff", textDecoration: "none" }}
+                >
                   BUZIOS
-                </Link>
+                </a>
               </Typography>
               <Link
                 to="/agenda"
