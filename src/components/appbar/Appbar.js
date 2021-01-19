@@ -9,6 +9,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import HowToRegIcon from "@material-ui/icons/HowToReg";
 import LiveTvIcon from "@material-ui/icons/LiveTv";
+import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
+import DirectionsBoatIcon from "@material-ui/icons/DirectionsBoat";
 
 const theme = createMuiTheme({
   palette: {
@@ -48,19 +50,35 @@ function Appbar() {
         <Fragment>
           <AppBar position="fixed">
             <Toolbar>
+              <DirectionsBoatIcon />
               <Typography variant="h6" className={classes.title}>
                 <a
                   href="https://buzios.migueldias.net"
-                  style={{ color: "#fff", textDecoration: "none" }}
+                  style={{
+                    color: "#fff",
+                    textDecoration: "none",
+                    marginLeft: 6
+                  }}
                 >
                   BUZIOS
                 </a>
               </Typography>
               <Link
-                to="/agenda"
+                to="/"
                 style={{
                   color: "#fff",
                   textDecoration: "none"
+                }}
+              >
+                {" "}
+                <FlightTakeoffIcon />
+              </Link>
+              <Link
+                to="/agenda"
+                style={{
+                  color: "#fff",
+                  textDecoration: "none",
+                  marginLeft: 15
                 }}
               >
                 {" "}
