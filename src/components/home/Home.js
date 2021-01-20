@@ -4,6 +4,7 @@ import Previsao from "../previsao/Previsao";
 import Praticagem from "../praticagem/Praticagem";
 import Voos from "../voos/Voos";
 import Hero from "../hero/Hero";
+import Decolagens from "../decolagens/Decolagens";
 import moment from "moment";
 
 const Home = () => {
@@ -11,6 +12,7 @@ const Home = () => {
   const [aeroTodos, setAeroTodos] = useState([]);
   const [details, setDetails] = useState();
   const [praticagem, setPraticagem] = useState([]);
+  const [decolagens, setDecolagens] = useState([]);
 
   const diaHoje = moment().format("DD/MM/YYYY");
   let dias = aeroTodos.map(todos => {
@@ -46,12 +48,24 @@ const Home = () => {
 
     praticos();
 
-    // const interval = setInterval(() => {
-    //   previsao();
-    //   voosHojeHms();
-    //   details();
-    // }, 240000);
-    // return () => clearInterval(interval);
+    async function decolagens() {
+      const res = await fetch(
+        "https://api.migueldias.net/buzios/voos/decolagem"
+      );
+      res
+        .json()
+        .then(res => setDecolagens(res.filter(i => i.saida_aero !== "")));
+    }
+
+    decolagens();
+
+    const interval = setInterval(() => {
+      // previsao();
+      // voosHojeHms();
+      // details();
+      decolagens();
+    }, 20000);
+    return () => clearInterval(interval);
   }, []);
 
   // Resultado de voo por dia ordenado
@@ -110,6 +124,7 @@ const Home = () => {
         perTresDias={perTresDias}
         perQuatroDias={perQuatroDias}
       />
+      <Decolagens decolagens={decolagens} />
       <Previsao
         voos={heliHoje}
         prevHoje={prevHoje}
