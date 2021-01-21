@@ -41,6 +41,17 @@ export default function Decolagens({ decolagens }) {
     setPage(0);
   };
 
+  // Compara as 2 propriedades do objeto
+  function compare(a, b) {
+    let comparison = 0;
+    if (a.saida_aero > b.saida_aero) {
+      comparison = -1;
+    } else if (a.saida_aero < b.saida_aero) {
+      comparison = 1;
+    }
+    return comparison;
+  }
+
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
@@ -63,6 +74,7 @@ export default function Decolagens({ decolagens }) {
           </TableHead>
           <TableBody>
             {decolagens
+              .sort(compare)
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map(row => {
                 return (
