@@ -14,6 +14,10 @@ const Home = () => {
   const [praticagem, setPraticagem] = useState([]);
   const [decolagens, setDecolagens] = useState([]);
 
+  const ontem = moment()
+    .add(1, "Day")
+    .format("DD/MM/YYYY");
+
   const diaHoje = moment().format("DD/MM/YYYY");
   let dias = aeroTodos.map(todos => {
     return todos;
@@ -54,7 +58,14 @@ const Home = () => {
       );
       res
         .json()
-        .then(res => setDecolagens(res.filter(i => i.saida_aero !== "")));
+        .then(res =>
+          setDecolagens(
+            res.filter(
+              i =>
+                (i.saida_aero !== "" && i.data === diaHoje) || i.data === ontem
+            )
+          )
+        );
     }
 
     decolagens();
@@ -66,7 +77,7 @@ const Home = () => {
       decolagens();
     }, 20000);
     return () => clearInterval(interval);
-  }, []);
+  }, [diaHoje, ontem]);
 
   // Resultado de voo por dia ordenado
   const amanha = moment()
