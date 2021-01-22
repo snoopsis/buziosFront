@@ -17,6 +17,7 @@ const useStyles = makeStyles({
   },
   card: {
     marginTop: 20,
+
     minWidth: 275
   },
   title: {
@@ -58,10 +59,17 @@ const Voos = ({ voos, prevHoje, details }) => {
         container
         justify="center"
         alignItems="center"
-        style={{ backgroundColor: "#f5f5f5" }}
+        style={{ backgroundColor: "#37474f", marginBottom: 20 }}
       >
         {voos.map(i => (
-          <Grid item xs={12} sm={6} md={4} key={i.id}>
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            key={i.id}
+            style={{ marginTop: 30, marginBottom: 30 }}
+          >
             <Card>
               <CardContent>
                 <div className={classes.empresa} variant="square">
