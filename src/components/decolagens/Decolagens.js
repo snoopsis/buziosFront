@@ -62,10 +62,10 @@ export default function Decolagens({ decolagens }) {
     // Converte para um numero inteiro
     if (parseInt(a.saida_aero) > parseInt(b.saida_aero)) {
       // Se existir decolagem pela tarde muda a ordem do array
-      comparison = tarde.length > 0 ? 1 : -1;
+      comparison = -1;
     } else if (a.saida_aero < b.saida_aero) {
       // Se nao existir decolagens pela tarde mantem ordem inicial do array
-      comparison = tarde.length === 0 ? 1 : -1;
+      comparison = 1;
     }
     return comparison;
   }
