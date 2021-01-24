@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
@@ -25,6 +26,20 @@ export default function Decolagens({ decolagens }) {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [horarios, setHorarios] = React.useState([]);
+
+  const hora = moment().format("HH");
+
+  const manha = decolagens.filter(i => i.saida_aero.match("am"));
+  const tarde = decolagens.filter(i => i.saida_aero.match("pm"));
+
+  setTimeout(() => {
+    if (parseInt(hora) < 12) {
+      setHorarios(manha);
+    } else {
+      setHorarios(tarde);
+    }
+  }, 2000);
 
   const columns = [
     { id: "procedencia", label: "Aero/Dest" },
@@ -44,66 +59,71 @@ export default function Decolagens({ decolagens }) {
   // Compara as 2 propriedades do objeto
   function compare(a, b) {
     let comparison = 0;
-    if (a.saida_aero > b.saida_aero) {
-      comparison = -1;
+    // Converte para um numero inteiro
+    if (parseInt(a.saida_aero) > parseInt(b.saida_aero)) {
+      // Se existir decolagem pela tarde muda a ordem do array
+      comparison = tarde.length > 0 ? 1 : -1;
     } else if (a.saida_aero < b.saida_aero) {
-      comparison = 1;
+      // Se nao existir decolagens pela tarde mantem ordem inicial do array
+      comparison = tarde.length === 0 ? 1 : -1;
     }
     return comparison;
   }
 
   return (
     <Paper className={classes.root}>
-      <TableContainer className={classes.container}>
-        <Grid container direction="row" justify="center" alignItems="center">
-          <Chip
-            label="Monitoramento Aeroportos Offshore"
-            color="primary"
-            style={{ marginBottom: 20 }}
+      {decolagens.length !== 0 && (
+        <TableContainer className={classes.container}>
+          <Grid container direction="row" justify="center" alignItems="center">
+            <Chip
+              label="Monitoramento Aeroportos Offshore"
+              color="primary"
+              style={{ marginBottom: 20 }}
+            />
+          </Grid>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead>
+              <TableRow>
+                {columns.map(column => (
+                  <TableCell key={column.id} align={column.align}>
+                    {column.label}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {horarios
+                .sort(compare)
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map(row => {
+                  return (
+                    <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
+                      {columns.map(column => {
+                        const value = row[column.id];
+                        return (
+                          <TableCell key={column.id} align={column.align}>
+                            {column.format && typeof value === "number"
+                              ? column.format(value)
+                              : value}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  );
+                })}
+            </TableBody>
+          </Table>
+          <TablePagination
+            rowsPerPageOptions={[10, 25, 100]}
+            component="div"
+            count={decolagens.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onChangePage={handleChangePage}
+            onChangeRowsPerPage={handleChangeRowsPerPage}
           />
-        </Grid>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map(column => (
-                <TableCell key={column.id} align={column.align}>
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {decolagens
-              .sort(compare)
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map(row => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                    {columns.map(column => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === "number"
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={decolagens.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
+        </TableContainer>
+      )}
     </Paper>
   );
 }
