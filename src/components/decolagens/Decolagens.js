@@ -1,5 +1,4 @@
 import React from "react";
-import moment from "moment";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
@@ -26,20 +25,6 @@ export default function Decolagens({ decolagens }) {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const [horarios, setHorarios] = React.useState([]);
-
-  const hora = moment().format("HH");
-
-  const manha = decolagens.filter(i => i.saida_aero.match("am"));
-  const tarde = decolagens.filter(i => i.saida_aero.match("pm"));
-
-  setTimeout(() => {
-    if (parseInt(hora) < 12) {
-      setHorarios(manha);
-    } else {
-      setHorarios(tarde);
-    }
-  }, 2000);
 
   const columns = [
     { id: "procedencia", label: "Aero/Dest" },
@@ -92,7 +77,7 @@ export default function Decolagens({ decolagens }) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {horarios
+              {decolagens
                 .sort(compare)
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(row => {

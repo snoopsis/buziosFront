@@ -10,7 +10,7 @@ import Listagem from "./components/camisas/Listagem";
 import Form from "./components/camisas/Form";
 import Praticagem from "./components/praticagem/Praticagem";
 
-function App() {
+const App = () => {
   return (
     <div>
       <Fragment>
@@ -30,6 +30,6 @@ function App() {
       </Fragment>
     </div>
   );
-}
+};
 
 export default App;
