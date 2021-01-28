@@ -10,35 +10,35 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
     "& > *": {
       margin: theme.spacing(1),
-      width: "25ch",
-    },
+      width: "30ch"
+    }
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120,
+    minWidth: 120
   },
   button: {
     marginTop: theme.spacing(1),
-    marginRight: theme.spacing(1),
+    marginRight: theme.spacing(1)
   },
   actionsContainer: {
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(2)
   },
   resetContainer: {
-    padding: theme.spacing(3),
-  },
+    padding: theme.spacing(3)
+  }
 }));
 
 function getSteps() {
   return [
     "Dados Pessoais / Personal Details",
     "Contato de Emergencia / Next of Kin",
-    "Enviar / Send",
+    "Enviar / Send"
   ];
 }
 
@@ -57,11 +57,11 @@ export default function VerticalLinearStepper(props) {
     genero: "",
     funcao: "",
     nok_nome: "",
-    nok_cel: "",
+    nok_cel: ""
   });
   const steps = getSteps();
 
-  const onChange = (e) => {
+  const onChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -78,19 +78,19 @@ export default function VerticalLinearStepper(props) {
         genero: form.genero,
         funcao: form.funcao,
         nok_nome: form.nok_nome,
-        nok_cel: form.nok_cel,
+        nok_cel: form.nok_cel
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error);
       });
   };
 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setActiveStep(prevActiveStep => prevActiveStep + 1);
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    setActiveStep(prevActiveStep => prevActiveStep - 1);
   };
 
   const handleReset = () => {
@@ -114,7 +114,7 @@ export default function VerticalLinearStepper(props) {
                 name="nome"
                 onChange={onChange}
                 InputLabelProps={{
-                  shrink: true,
+                  shrink: true
                 }}
               />
               <TextField
@@ -123,7 +123,7 @@ export default function VerticalLinearStepper(props) {
                 name="empresa"
                 onChange={onChange}
                 InputLabelProps={{
-                  shrink: true,
+                  shrink: true
                 }}
               />
               <TextField
@@ -132,7 +132,7 @@ export default function VerticalLinearStepper(props) {
                 name="nacionalidade"
                 onChange={onChange}
                 InputLabelProps={{
-                  shrink: true,
+                  shrink: true
                 }}
               />
               <TextField
@@ -141,7 +141,7 @@ export default function VerticalLinearStepper(props) {
                 name="local_nasc"
                 onChange={onChange}
                 InputLabelProps={{
-                  shrink: true,
+                  shrink: true
                 }}
               />
               <TextField
@@ -150,7 +150,7 @@ export default function VerticalLinearStepper(props) {
                 name="cpf"
                 onChange={onChange}
                 InputLabelProps={{
-                  shrink: true,
+                  shrink: true
                 }}
               />
               <TextField
@@ -159,7 +159,7 @@ export default function VerticalLinearStepper(props) {
                 name="nascimento"
                 onChange={onChange}
                 InputLabelProps={{
-                  shrink: true,
+                  shrink: true
                 }}
               />
               <TextField
@@ -169,7 +169,7 @@ export default function VerticalLinearStepper(props) {
                 name="email"
                 onChange={onChange}
                 InputLabelProps={{
-                  shrink: true,
+                  shrink: true
                 }}
               />
               <TextField
@@ -179,7 +179,7 @@ export default function VerticalLinearStepper(props) {
                 onChange={onChange}
                 name="celular"
                 InputLabelProps={{
-                  shrink: true,
+                  shrink: true
                 }}
               />
               <TextField
@@ -188,7 +188,7 @@ export default function VerticalLinearStepper(props) {
                 name="genero"
                 onChange={onChange}
                 InputLabelProps={{
-                  shrink: true,
+                  shrink: true
                 }}
               ></TextField>
               <TextField
@@ -196,6 +196,9 @@ export default function VerticalLinearStepper(props) {
                 variant="outlined"
                 name="funcao"
                 onChange={onChange}
+                InputLabelProps={{
+                  shrink: true
+                }}
               />
             </form>
           </React.Fragment>
@@ -210,7 +213,7 @@ export default function VerticalLinearStepper(props) {
                 name="nok_nome"
                 onChange={onChange}
                 InputLabelProps={{
-                  shrink: true,
+                  shrink: true
                 }}
               />
               <TextField
@@ -219,7 +222,7 @@ export default function VerticalLinearStepper(props) {
                 name="nok_cel"
                 onChange={onChange}
                 InputLabelProps={{
-                  shrink: true,
+                  shrink: true
                 }}
               />
             </form>
