@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import vesselContext from "../../context/details/vesselContext";
 import { createMuiTheme, makeStyles } from "@material-ui/core/styles";
 import deepPurple from "@material-ui/core/colors/deepPurple";
 import red from "@material-ui/core/colors/red";
@@ -17,6 +18,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
+import Chart from "../chart/Chart";
 
 const theme = createMuiTheme({
   palette: {
@@ -57,19 +59,29 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Previsao({
-  prevHoje,
-  prevAmanha,
-  prevDoisDias,
-  prevTresDias,
-  prevQuatroDias,
-  perHoje,
-  perAmanha,
-  perDoisDias,
-  perTresDias,
-  perQuatroDias
-}) {
+export default function Previsao() {
+  useEffect(() => {
+    getBuziosWeather();
+    // eslint-disable-next-line
+  }, []);
+
   const classes = useStyles();
+
+  const VesselContext = useContext(vesselContext);
+
+  const {
+    getBuziosWeather,
+    prevHoje,
+    prevAmanha,
+    prevDoisDias,
+    prevTresDias,
+    prevQuatroDias,
+    perHoje,
+    perAmanha,
+    perDoisDias,
+    perTresDias,
+    perQuatroDias
+  } = VesselContext;
 
   return (
     <div>
@@ -285,9 +297,19 @@ function Previsao({
             </TableBody>
           </Table>
         </TableContainer>
+        <Chart
+          prevHoje={prevHoje}
+          prevAmanha={prevAmanha}
+          prevTresDias={prevTresDias}
+          prevQuatroDias={prevQuatroDias}
+          prevDoisDias={prevDoisDias}
+          perHoje={perHoje}
+          perAmanha={perAmanha}
+          perDoisDias={perDoisDias}
+          perTresDias={perTresDias}
+          perQuatroDias={perQuatroDias}
+        />
       </ThemeProvider>
     </div>
   );
 }
-
-export default Previsao;

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import vesselContext from "../../context/details/vesselContext";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -13,13 +14,22 @@ const useStyles = makeStyles({
   }
 });
 
-const Hero = ({ details }) => {
+export default function Hero() {
+  useEffect(() => {
+    getVesselDetails();
+    // eslint-disable-next-line
+  }, []);
+
   const classes = useStyles();
+
+  const VesselContext = useContext(vesselContext);
+
+  const { getVesselDetails, detalhes } = VesselContext;
 
   return (
     <React.Fragment>
       <Grid container direction="row" justify="center" alignItems="center">
-        {details && (
+        {detalhes.length !== 0 && (
           <Card
             style={{ marginTop: 20, marginBottom: 20 }}
             className={classes.root}
@@ -35,7 +45,7 @@ const Hero = ({ details }) => {
                 <CardMedia
                   component="img"
                   image="dof.png"
-                  title={details[0].area}
+                  title={detalhes[0].area}
                   style={{ width: 100 }}
                 />
               </Grid>
@@ -45,7 +55,7 @@ const Hero = ({ details }) => {
                   component="h2"
                   style={{ textAlign: "center" }}
                 >
-                  {details[0].posicao}
+                  {detalhes[0].posicao}
                 </Typography>
 
                 <Typography
@@ -54,7 +64,7 @@ const Hero = ({ details }) => {
                   component="p"
                   style={{ textAlign: "center" }}
                 >
-                  {`${details[0].atualizacao}`}
+                  {`${detalhes[0].atualizacao}`}
                 </Typography>
               </CardContent>
             </CardActionArea>
@@ -63,6 +73,4 @@ const Hero = ({ details }) => {
       </Grid>
     </React.Fragment>
   );
-};
-
-export default Hero;
+}

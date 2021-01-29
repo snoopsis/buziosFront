@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import vesselContext from "../../context/details/vesselContext";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
@@ -21,8 +22,18 @@ const useStyles = makeStyles({
   }
 });
 
-export default function Decolagens({ decolagens }) {
+export default function Decolagens() {
+  useEffect(() => {
+    getDecolagens();
+    // eslint-disable-next-line
+  }, []);
+
   const classes = useStyles();
+
+  const VesselContext = useContext(vesselContext);
+
+  const { getDecolagens, decolagens } = VesselContext;
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 

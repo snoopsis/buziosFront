@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -9,7 +9,7 @@ import Chip from "@material-ui/core/Chip";
 import Card from "@material-ui/core/Card";
 import red from "@material-ui/core/colors/red";
 import grey from "@material-ui/core/colors/grey";
-// import CardHeader from "@material-ui/core/CardHeader";
+import vesselContext from "../../context/details/vesselContext";
 
 const useStyles = makeStyles({
   root: {
@@ -45,8 +45,27 @@ const useStyles = makeStyles({
   }
 });
 
-const Voos = ({ voos, prevHoje, details }) => {
+export default function Voos() {
+  useEffect(() => {
+    getBuziosWeather();
+    getVoosBuzios();
+    // eslint-disable-next-line
+  }, []);
+
   const classes = useStyles();
+
+  const VesselContext = useContext(vesselContext);
+
+  const {
+    getBuziosWeather,
+    weather,
+    diaHoje,
+    getVoosBuzios,
+    voosBuzios
+  } = VesselContext;
+
+  const prevHoje = weather.filter(i => i.data === diaHoje);
+
   const ondaHoje = prevHoje.map(i => i.onda);
   const ondaString = ondaHoje.toString();
   const ondaReduz = ondaString.substr(0, 3);
@@ -61,7 +80,7 @@ const Voos = ({ voos, prevHoje, details }) => {
         alignItems="center"
         style={{ backgroundColor: "#37474f", marginBottom: 20 }}
       >
-        {voos.map(i => (
+        {voosBuzios.map(i => (
           <Grid
             item
             xs={12}
@@ -181,6 +200,4 @@ const Voos = ({ voos, prevHoje, details }) => {
       </Grid>
     </React.Fragment>
   );
-};
-
-export default Voos;
+}
