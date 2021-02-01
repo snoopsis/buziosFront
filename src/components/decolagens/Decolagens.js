@@ -25,6 +25,7 @@ const useStyles = makeStyles({
 export default function Decolagens() {
   useEffect(() => {
     getDecolagens();
+    setInterval(() => getDecolagens(), 15000);
     // eslint-disable-next-line
   }, []);
 

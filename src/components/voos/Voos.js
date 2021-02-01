@@ -49,6 +49,7 @@ export default function Voos() {
   useEffect(() => {
     getBuziosWeather();
     getVoosBuzios();
+    setInterval(() => getVoosBuzios(), 15000);
     // eslint-disable-next-line
   }, []);
 

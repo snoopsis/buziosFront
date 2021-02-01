@@ -56,6 +56,7 @@ const useStyles = makeStyles(theme => ({
 export default function Praticagem() {
   useEffect(() => {
     getPraticagem();
+    setInterval(() => getPraticagem(), 15000);
     // eslint-disable-next-line
   }, []);
 

@@ -10,38 +10,38 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
+import Container from "@material-ui/core/Container";
 
-const StyledTableCell = withStyles((theme) => ({
+const StyledTableCell = withStyles(theme => ({
   head: {
     backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    color: theme.palette.common.white
   },
   body: {
-    fontSize: 14,
-  },
+    fontSize: 14
+  }
 }))(TableCell);
 
-const StyledTableRow = withStyles((theme) => ({
+const StyledTableRow = withStyles(theme => ({
   root: {
     "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
+      backgroundColor: theme.palette.action.hover
+    }
+  }
 }))(TableRow);
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
     "& > *": {
       margin: theme.spacing(1),
-      width: "25ch",
-    },
+      width: "40ch"
+    }
   },
   table: {
-    width: "100%",
-  },
+    width: "100%"
+  }
 }));
 export default function Canais() {
   const classes = useStyles();
@@ -51,7 +51,7 @@ export default function Canais() {
   useEffect(() => {
     async function agenda() {
       const res = await fetch("https://api.migueldias.net/buzios/canais");
-      res.json().then((res) => setAgendamentos(res));
+      res.json().then(res => setAgendamentos(res));
     }
 
     agenda();
@@ -59,54 +59,59 @@ export default function Canais() {
 
   return (
     <div style={{ marginBottom: 20 }}>
-      <Grid container direction="row" justify="center" alignItems="center">
-        <Grid item xs={12}>
-          <Typography variant="h5">AGENDAMENTOS</Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            lista de agendamentos do canal 11
-          </Typography>
-        </Grid>
+      <Container style={{ textAlign: "center" }}>
+        <Typography variant="h4">AGENDAMENTOS</Typography>
+        <Typography variant="body2" color="textSecondary" component="p">
+          AGENDAMENTO DO CANAL 11
+        </Typography>
 
-        <Grid item xs={12} style={{ marginTop: 20, marginBottom: 20 }}>
-          <Link to="/canais">
-            <Button variant="contained" color="primary">
-              Agendar / Book
-            </Button>
-          </Link>
-        </Grid>
-      </Grid>
-      <TableContainer component={Paper}>
-        <Table
-          className={classes.table}
-          size="small"
-          aria-label="a dense table"
-        >
-          <TableHead>
-            <TableRow>
-              <StyledTableCell>Canal</StyledTableCell>
-              <StyledTableCell align="center">Data</StyledTableCell>
-              <StyledTableCell align="center">Horario</StyledTableCell>
-              <StyledTableCell align="center">Programa</StyledTableCell>
-              <StyledTableCell align="center">Numero</StyledTableCell>
-              <StyledTableCell align="center">Nome</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {agendamentos.map((row) => (
-              <StyledTableRow key={row.numero}>
-                <StyledTableCell component="th" scope="row">
-                  {row.canal}
-                </StyledTableCell>
-                <StyledTableCell align="center">{row.data}</StyledTableCell>
-                <StyledTableCell align="center">{row.horario}</StyledTableCell>
-                <StyledTableCell align="center">{row.programa}</StyledTableCell>
-                <StyledTableCell align="center">{row.numero}</StyledTableCell>
-                <StyledTableCell align="center">{row.nome}</StyledTableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+        <Link to="/canais" style={{ textDecoration: "none" }}>
+          <Button
+            variant="contained"
+            color="primary"
+            style={{ marginTop: 30, marginBottom: 30 }}
+          >
+            Agendar / Book
+          </Button>
+        </Link>
+
+        <TableContainer component={Paper}>
+          <Table
+            className={classes.table}
+            size="small"
+            aria-label="a dense table"
+          >
+            <TableHead>
+              <TableRow>
+                <StyledTableCell>Canal</StyledTableCell>
+                <StyledTableCell align="center">Data</StyledTableCell>
+                <StyledTableCell align="center">Horario</StyledTableCell>
+                <StyledTableCell align="center">Programa</StyledTableCell>
+                <StyledTableCell align="center">Numero</StyledTableCell>
+                <StyledTableCell align="center">Nome</StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {agendamentos.map(row => (
+                <StyledTableRow key={Math.floor(Math.random() * 9000) + 1}>
+                  <StyledTableCell component="th" scope="row">
+                    {row.canal}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">{row.data}</StyledTableCell>
+                  <StyledTableCell align="center">
+                    {row.horario}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {row.programa}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">{row.numero}</StyledTableCell>
+                  <StyledTableCell align="center">{row.nome}</StyledTableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Container>
     </div>
   );
 }

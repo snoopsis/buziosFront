@@ -21,35 +21,35 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import lista from "./lista";
 
-const StyledTableCell = withStyles((theme) => ({
+const StyledTableCell = withStyles(theme => ({
   head: {
     backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    color: theme.palette.common.white
   },
   body: {
-    fontSize: 14,
-  },
+    fontSize: 14
+  }
 }))(TableCell);
 
-const StyledTableRow = withStyles((theme) => ({
+const StyledTableRow = withStyles(theme => ({
   root: {
     "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
+      backgroundColor: theme.palette.action.hover
+    }
+  }
 }))(TableRow);
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
     "& > *": {
       margin: theme.spacing(1),
-      width: "25ch",
-    },
+      width: "25ch"
+    }
   },
   table: {
-    width: "100%",
-  },
+    width: "100%"
+  }
 }));
 export default function Canais(props) {
   const classes = useStyles();
@@ -60,12 +60,12 @@ export default function Canais(props) {
     numero: "",
     nome: "",
     horario: "",
-    programa: "",
+    programa: ""
   });
 
   const [form, setForm] = useState(false);
 
-  const onChange = (e) => {
+  const onChange = e => {
     setEscolha({ ...escolha, [e.target.name]: e.target.value });
   };
 
@@ -78,9 +78,9 @@ export default function Canais(props) {
         nome: escolha.nome,
         horario: escolha.horario,
         programa: escolha.programa,
-        data: escolha.data,
+        data: escolha.data
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error);
       });
     setForm(false);
@@ -88,17 +88,17 @@ export default function Canais(props) {
     setTimeout(() => notifySuccess(), 1000);
   };
 
-  const pegaCanal = (canal) => {
+  const pegaCanal = canal => {
     setEscolha({
       canal: canal.canal,
-      numero: canal.numero,
+      numero: canal.numero
     });
     setForm(true);
   };
 
   function filtrar() {
     const regex = new RegExp(escolha.procurar, "gi");
-    return lista.filter((item) => item.canal.match(regex));
+    return lista.filter(item => item.canal.match(regex));
   }
 
   const notifySuccess = () =>
@@ -109,7 +109,7 @@ export default function Canais(props) {
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
-      progress: undefined,
+      progress: undefined
     });
 
   return (
@@ -159,7 +159,7 @@ export default function Canais(props) {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {filtrar().map((row) => (
+                {filtrar().map(row => (
                   <StyledTableRow key={row.numero}>
                     <StyledTableCell component="th" scope="row">
                       {row.canal}
@@ -192,7 +192,7 @@ export default function Canais(props) {
           direction="row"
           justify="center"
           alignItems="center"
-          style={{ marginTop: 20, marginBottom: 20 }}
+          style={{ marginTop: 20, marginBottom: 20, textAlign: "center" }}
         >
           <Button
             variant="contained"
@@ -209,7 +209,7 @@ export default function Canais(props) {
               name="canal"
               onChange={onChange}
               InputLabelProps={{
-                shrink: true,
+                shrink: true
               }}
               value={escolha.canal}
             />
@@ -219,7 +219,7 @@ export default function Canais(props) {
               name="numero"
               onChange={onChange}
               InputLabelProps={{
-                shrink: true,
+                shrink: true
               }}
               value={escolha.numero}
             />
@@ -229,7 +229,7 @@ export default function Canais(props) {
               name="nome"
               onChange={onChange}
               InputLabelProps={{
-                shrink: true,
+                shrink: true
               }}
             />
             <TextField
@@ -238,7 +238,7 @@ export default function Canais(props) {
               name="data"
               onChange={onChange}
               InputLabelProps={{
-                shrink: true,
+                shrink: true
               }}
             />
             <TextField
@@ -247,7 +247,7 @@ export default function Canais(props) {
               name="horario"
               onChange={onChange}
               InputLabelProps={{
-                shrink: true,
+                shrink: true
               }}
             />
             <TextField
@@ -256,7 +256,7 @@ export default function Canais(props) {
               name="programa"
               onChange={onChange}
               InputLabelProps={{
-                shrink: true,
+                shrink: true
               }}
             />
           </form>
