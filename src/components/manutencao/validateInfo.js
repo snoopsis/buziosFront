@@ -2,19 +2,19 @@ export default function validateInfo(values) {
   let errors = {};
 
   if (!values.primeiroNome.trim()) {
-    errors.primeiroNome = "Obrigatorio Primeiro Nome";
+    errors.primeiroNome = "Por favor preencha Primeiro Nome";
   }
   if (!values.ultimoNome.trim()) {
-    errors.ultimoNome = "Obrigatorio Ultimo Nome";
+    errors.ultimoNome = "Por favor preencha Ultimo Nome";
   }
   if (!values.local.trim()) {
-    errors.local = "Obrigatorio Local";
+    errors.local = "Por favor preencha o Local";
   }
   if (!values.horario.trim()) {
-    errors.horario = "Obrigatorio Melhor Horario";
+    errors.horario = "Por favor preencha Melhor Horario";
   }
   if (!values.problema.trim()) {
-    errors.problema = "Obrigatorio Problema";
+    errors.problema = "Por favor preencha Problema";
   }
   // else if (!/^[A-Za-z]+/.test(values.name.trim())) {
   //   errors.name = 'Enter a valid name';

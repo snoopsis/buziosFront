@@ -39,8 +39,8 @@ const FormSignup = ({ submitForm }) => {
 
   return (
     <React.Fragment>
-      <form onSubmit={handleSubmit}>
-        {errors.ultimoNome && (
+      <form onSubmit={handleSubmit} noValidate>
+        {errors.primeiroNome && (
           <Alert severity="error" className={classes.alert}>
             {errors.primeiroNome}
           </Alert>
@@ -74,7 +74,7 @@ const FormSignup = ({ submitForm }) => {
           className={classes.formFields}
           value={values.ultimoNome}
         />
-        {errors.ultimoNome && (
+        {errors.local && (
           <Alert severity="error" className={classes.alert}>
             {errors.local}
           </Alert>
@@ -91,7 +91,7 @@ const FormSignup = ({ submitForm }) => {
           className={classes.formFields}
           value={values.local}
         />
-        {errors.ultimoNome && (
+        {errors.horario && (
           <Alert severity="error" className={classes.alert}>
             {errors.horario}
           </Alert>
@@ -108,7 +108,7 @@ const FormSignup = ({ submitForm }) => {
           className={classes.formFields}
           value={values.horario}
         />
-        {errors.ultimoNome && (
+        {errors.problema && (
           <Alert severity="error" className={classes.alert}>
             {errors.problema}
           </Alert>

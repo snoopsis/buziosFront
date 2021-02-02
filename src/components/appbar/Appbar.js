@@ -19,6 +19,7 @@ import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
+import SettingsIcon from "@material-ui/icons/Settings";
 
 const theme = createMuiTheme({
   palette: {
@@ -105,6 +106,22 @@ export default function Appbar() {
             </ListItemIcon>
             <ListItemText style={{ marginTop: 11 }}>
               Voos Metereologia
+            </ListItemText>
+          </ListItem>
+        </Link>
+        <Link
+          to="/manutencao"
+          style={{
+            color: "#000",
+            textDecoration: "none"
+          }}
+        >
+          <ListItem>
+            <ListItemIcon>
+              <SettingsIcon />
+            </ListItemIcon>
+            <ListItemText style={{ marginTop: 11 }}>
+              Pedido Manutenção
             </ListItemText>
           </ListItem>
         </Link>

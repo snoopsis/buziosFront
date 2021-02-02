@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
 import FormSignup from "./FormSignup";
@@ -8,20 +9,22 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
+import Alert from "@material-ui/lab/Alert";
 
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%"
   },
   heading: {
-    fontSize: theme.typography.pxToRem(15),
+    fontSize: theme.typography.pxToRem(14),
     flexBasis: "33.33%",
-    flexShrink: 0
+    flexShrink: 0,
+    textTransform: "uppercase"
   },
   secondaryHeading: {
-    fontSize: theme.typography.pxToRem(15),
+    fontSize: theme.typography.pxToRem(13),
     color: theme.palette.text.secondary,
-    marginLeft: 30
+    textTransform: "uppercase"
   },
   formFields: {
     marginBottom: 20,
@@ -30,26 +33,31 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Manutencao({ props, submitForm }) {
+export default function Manutencao() {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
   const [lista, setLista] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [final, setFinal] = useState(false);
 
   function submitForm() {
-    setIsSubmitted(true);
+    setIsSubmitted(false);
+    setFinal(true);
   }
 
   useEffect(() => {
-    async function agenda() {
-      const res = await fetch(
-        "https://api.migueldias.net/buzios/listamanutencao"
-      );
-      res.json().then(res => setLista(res));
-    }
-
-    agenda();
-  }, []);
+    // Make a request for a user with a given ID
+    axios
+      .get("https://api.migueldias.net/buzios/listamanutencao")
+      .then(function(response) {
+        // handle success
+        setLista(response.data);
+      })
+      .catch(function(error) {
+        // handle error
+        console.log(error);
+      });
+  }, [lista]);
 
   const handleChanges = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -73,7 +81,7 @@ export default function Manutencao({ props, submitForm }) {
           variant="outlined"
           color="primary"
           style={{
-            marginBottom: 40,
+            marginBottom: 10,
             display: isSubmitted === false ? "" : "none"
           }}
           onClick={() => setIsSubmitted(true)}
@@ -84,70 +92,38 @@ export default function Manutencao({ props, submitForm }) {
         {isSubmitted && <FormSignup submitForm={submitForm} />}
       </Container>
 
+      <div style={{ marginBottom: 10 }}>
+        {final && (
+          <Alert severity="success">Pedido de Manutenção Enviado!</Alert>
+        )}
+      </div>
+
       {isSubmitted === false && (
         <div>
-          <Accordion
-            expanded={expanded === "panel1"}
-            onChange={handleChanges("panel1")}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1bh-content"
-              id="panel1bh-header"
+          {lista.map(manutencao => (
+            <Accordion
+              expanded={expanded === manutencao.id}
+              onChange={handleChanges(manutencao.id)}
+              key={manutencao.id}
             >
-              <Typography className={classes.heading}>CABINE 728</Typography>
-              <Typography className={classes.secondaryHeading}>
-                MIGUEL DIAS
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Lampada queimada e vazamento de agua no banheiro.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion
-            expanded={expanded === "panel2"}
-            onChange={handleChanges("panel2")}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel2bh-content"
-              id="panel2bh-header"
-            >
-              <Typography className={classes.heading}>
-                CORREDOR DECK B
-              </Typography>
-              <Typography className={classes.secondaryHeading}>
-                JAISON JESUS
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Corrimao quebrado proximo a lixeira de bombordo.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion
-            expanded={expanded === "panel3"}
-            onChange={handleChanges("panel3")}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel3bh-content"
-              id="panel3bh-header"
-            >
-              <Typography className={classes.heading}>REFEITORIO</Typography>
-              <Typography className={classes.secondaryHeading}>
-                ANTONIO SILVA
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Pe da mesa central quebrado e maquina de cafe nao liga.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1bh-content"
+                id="panel1bh-header"
+              >
+                <Typography className={classes.heading}>
+                  {manutencao.local}
+                </Typography>
+                <Typography className={classes.secondaryHeading}>
+                  {manutencao.nome} {" | "}
+                  <strong>{manutencao.data}</strong>
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>{manutencao.problema}</Typography>
+              </AccordionDetails>
+            </Accordion>
+          ))}
         </div>
       )}
     </div>
