@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
 import TextField from "@material-ui/core/TextField";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -85,7 +84,6 @@ export default function Canais(props) {
       });
     setForm(false);
     props.history.push("/agenda");
-    setTimeout(() => notifySuccess(), 1000);
   };
 
   const pegaCanal = canal => {
@@ -101,30 +99,8 @@ export default function Canais(props) {
     return lista.filter(item => item.canal.match(regex));
   }
 
-  const notifySuccess = () =>
-    toast.success("Pedido de canal enviado! Obrigado.", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined
-    });
-
   return (
     <div>
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       {form === false && (
         <Grid container direction="row" justify="center" alignItems="center">
           <Card
@@ -267,7 +243,6 @@ export default function Canais(props) {
             style={{ marginTop: 10 }}
             onClick={() => {
               onSubmit();
-              notifySuccess();
             }}
             type="submit"
           >

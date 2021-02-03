@@ -11,6 +11,7 @@ import Listagem from "./components/camisas/Listagem";
 import Form from "./components/camisas/Form";
 import Praticagem from "./components/praticagem/Praticagem";
 import Manutencao from "./components/manutencao/Manutencao";
+import Teste from "./components/tv/Teste";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
               <Route exact path="/form" component={Form} />
               <Route exact path="/praticagem" component={Praticagem} />
               <Route exact path="/manutencao" component={Manutencao} />
+              <Route exact path="/teste" component={Teste} />
             </Switch>
           </Router>
           <Footer />

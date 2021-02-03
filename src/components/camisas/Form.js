@@ -1,7 +1,6 @@
 /* eslint-disable no-use-before-define */
 import React, { useState } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
@@ -37,33 +36,10 @@ export default function Form(props) {
         console.log(error);
       });
     props.history.push("/listagem");
-    setTimeout(() => notifySuccess(), 1000);
   };
-
-  const notifySuccess = () =>
-    toast.success("Pedido de canal enviado! Obrigado.", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined
-    });
 
   return (
     <div>
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <Grid container direction="row" justify="center" alignItems="center">
         <Grid item xs={12}>
           <Typography variant="h5">CAMISAS SKANDI BUZIOS</Typography>
@@ -150,7 +126,6 @@ export default function Form(props) {
           style={{ marginTop: 10 }}
           onClick={() => {
             onSubmit();
-            notifySuccess();
           }}
           type="submit"
         >

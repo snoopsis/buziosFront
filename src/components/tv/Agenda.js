@@ -1,35 +1,15 @@
 /* eslint-disable no-use-before-define */
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
+import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import Accordion from "@material-ui/core/Accordion";
 import Container from "@material-ui/core/Container";
-
-const StyledTableCell = withStyles(theme => ({
-  head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white
-  },
-  body: {
-    fontSize: 14
-  }
-}))(TableCell);
-
-const StyledTableRow = withStyles(theme => ({
-  root: {
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover
-    }
-  }
-}))(TableRow);
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,22 +19,39 @@ const useStyles = makeStyles(theme => ({
       width: "40ch"
     }
   },
-  table: {
-    width: "100%"
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    flexBasis: "33.33%",
+    flexShrink: 0,
+    textTransform: "uppercase"
+  },
+  secondaryHeading: {
+    fontSize: theme.typography.pxToRem(14),
+    color: theme.palette.text.secondary,
+    textTransform: "uppercase"
   }
 }));
 export default function Canais() {
   const classes = useStyles();
 
   const [agendamentos, setAgendamentos] = useState([]);
+  const [expanded, setExpanded] = useState(false);
+
+  const handleChanges = panel => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
 
   useEffect(() => {
-    async function agenda() {
-      const res = await fetch("https://api.migueldias.net/buzios/canais");
-      res.json().then(res => setAgendamentos(res));
-    }
-
-    agenda();
+    axios
+      .get("https://api.migueldias.net/buzios/canais")
+      .then(function(response) {
+        // handle success
+        setAgendamentos(response.data);
+      })
+      .catch(function(error) {
+        // handle error
+        console.log(error);
+      });
   }, [agendamentos]);
 
   return (
@@ -75,42 +72,35 @@ export default function Canais() {
           </Button>
         </Link>
 
-        <TableContainer component={Paper}>
-          <Table
-            className={classes.table}
-            size="small"
-            aria-label="a dense table"
+        {agendamentos.map(agenda => (
+          <Accordion
+            expanded={expanded === agenda.id}
+            onChange={handleChanges(agenda.id)}
+            key={agenda.id}
           >
-            <TableHead>
-              <TableRow>
-                <StyledTableCell>Canal</StyledTableCell>
-                <StyledTableCell align="center">Data</StyledTableCell>
-                <StyledTableCell align="center">Horario</StyledTableCell>
-                <StyledTableCell align="center">Programa</StyledTableCell>
-                <StyledTableCell align="center">Numero</StyledTableCell>
-                <StyledTableCell align="center">Nome</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {agendamentos.map(row => (
-                <StyledTableRow key={Math.floor(Math.random() * 9000) + 1}>
-                  <StyledTableCell component="th" scope="row">
-                    {row.canal}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">{row.data}</StyledTableCell>
-                  <StyledTableCell align="center">
-                    {row.horario}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {row.programa}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">{row.numero}</StyledTableCell>
-                  <StyledTableCell align="center">{row.nome}</StyledTableCell>
-                </StyledTableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1bh-content"
+              id="panel1bh-header"
+            >
+              <Typography className={classes.heading}>
+                {agenda.data.slice(0, 5)}
+              </Typography>
+              <Typography className={classes.secondaryHeading}>
+                Canal: {agenda.numero} {" | "}
+                <strong>{agenda.horario}</strong>
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                <strong>Programa:</strong> {agenda.programa} |{" "}
+                <strong>Canal:</strong>
+                {agenda.canal} | <strong>Tripulante: </strong>
+                {agenda.nome}
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+        ))}
       </Container>
     </div>
   );
