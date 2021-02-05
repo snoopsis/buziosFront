@@ -9,6 +9,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
+import Typography from "@material-ui/core/Typography";
 import Chip from "@material-ui/core/Chip";
 import Grid from "@material-ui/core/Grid";
 
@@ -56,11 +57,13 @@ export default function Decolagens() {
   // Compara as 2 propriedades do objeto
   function compare(a, b) {
     let comparison = 0;
+    var comparaA = a.saida_aero.replace(":", "");
+    var comparaB = b.saida_aero.replace(":", "");
     // Converte para um numero inteiro
-    if (parseInt(a.saida_aero) > parseInt(b.saida_aero)) {
+    if (parseInt(comparaA) > parseInt(comparaB)) {
       // Se existir decolagem pela tarde muda a ordem do array
       comparison = -1;
-    } else if (a.saida_aero < b.saida_aero) {
+    } else if (comparaA < comparaB) {
       // Se nao existir decolagens pela tarde mantem ordem inicial do array
       comparison = 1;
     }
@@ -72,11 +75,26 @@ export default function Decolagens() {
       {decolagens.length !== 0 && (
         <TableContainer className={classes.container}>
           <Grid container direction="row" justify="center" alignItems="center">
-            <Chip
-              label="Monitoramento Aeroportos Offshore"
-              color="primary"
-              style={{ marginBottom: 20 }}
-            />
+            <Grid item xs={12} style={{ textAlign: "center" }}>
+              <Chip
+                label="Decolagens em Tempo Real"
+                color="primary"
+                style={{ marginBottom: 20 }}
+              />
+            </Grid>
+
+            <Grid
+              item
+              xs={12}
+              style={{
+                textAlign: "center",
+                marginBottom: 20
+              }}
+            >
+              <Typography variant="body1">
+                Todos os Voos Programados no SITAER
+              </Typography>
+            </Grid>
           </Grid>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>

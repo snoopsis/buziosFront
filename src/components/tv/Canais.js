@@ -1,10 +1,10 @@
 /* eslint-disable no-use-before-define */
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import TextField from "@material-ui/core/TextField";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
+import Container from "@material-ui/core/Container";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
@@ -12,12 +12,10 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import AssignmentTurnedInOutlinedIcon from "@material-ui/icons/AssignmentTurnedInOutlined";
-import CardContent from "@material-ui/core/CardContent";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
+import FormSignup from "./FormSignup";
+import Agenda from "./Agenda";
 import lista from "./lista";
 
 const StyledTableCell = withStyles(theme => ({
@@ -53,47 +51,40 @@ const useStyles = makeStyles(theme => ({
 export default function Canais(props) {
   const classes = useStyles();
 
+  const [form, setForm] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [escolha, setEscolha] = useState({
     procurar: "",
-    canal: "",
     numero: "",
-    nome: "",
-    horario: "",
-    programa: ""
+    canal: ""
   });
 
-  const [form, setForm] = useState(false);
+  // Define se o isSubmited e verdadeiro
+  // Com base no callback do useForm
+  function submitForm() {
+    setIsSubmitted(true);
+  }
 
   const onChange = e => {
-    setEscolha({ ...escolha, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setEscolha({
+      ...escolha,
+      [name]: value
+    });
   };
 
-  const onSubmit = () => {
-    // Post Request
-    axios
-      .post("https://api.migueldias.net/buzios/novoCanal", {
-        canal: escolha.canal,
-        numero: escolha.numero,
-        nome: escolha.nome,
-        horario: escolha.horario,
-        programa: escolha.programa,
-        data: escolha.data
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-    setForm(false);
-    props.history.push("/agenda");
-  };
-
+  // Pega o nome do canal pelo map(row)
   const pegaCanal = canal => {
     setEscolha({
       canal: canal.canal,
-      numero: canal.numero
+      numero: canal.numero,
+      procurar: escolha.procurar
     });
     setForm(true);
   };
 
+  // Filtra os resultados de acordo com o que se coloca
+  // na Busca e retorna os valores
   function filtrar() {
     const regex = new RegExp(escolha.procurar, "gi");
     return lista.filter(item => item.canal.match(regex));
@@ -103,28 +94,38 @@ export default function Canais(props) {
     <div>
       {form === false && (
         <Grid container direction="row" justify="center" alignItems="center">
-          <Card
-            style={{ marginBottom: 10 }}
-            className={classes.root}
-            elevation={0}
-          >
-            <CardActionArea>
-              <CardContent>
-                <Typography variant="h5">AGENDAMENTO</Typography>
+          <Grid item>
+            <Container>
+              <Typography
+                variant="h5"
+                style={{ marginBottom: 15, marginTop: 10 }}
+              >
+                AGENDAMENTO / BOOKING
+              </Typography>
 
-                <Typography variant="body2" color="textSecondary" component="p">
-                  Selecione o seu canal
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          <TextField
-            label="Procurar canal..."
-            variant="outlined"
-            name="procurar"
-            onChange={onChange}
-            style={{ width: "100%", marginBottom: 20 }}
-          />
+              <Typography
+                variant="body2"
+                color="textSecondary"
+                component="p"
+                style={{ textAlign: "center", marginBottom: 20 }}
+              >
+                Selecione o seu canal / Choose Channel
+              </Typography>
+            </Container>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Container>
+              <TextField
+                label="Procurar / Search..."
+                variant="outlined"
+                name="procurar"
+                onChange={onChange}
+                style={{ width: "100%", marginBottom: 20 }}
+              />
+            </Container>
+          </Grid>
+
           <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="customized table">
               <TableHead>
@@ -162,93 +163,14 @@ export default function Canais(props) {
           </TableContainer>
         </Grid>
       )}
-      {form === true && (
-        <Grid
-          container
-          direction="row"
-          justify="center"
-          alignItems="center"
-          style={{ marginTop: 20, marginBottom: 20, textAlign: "center" }}
-        >
-          <Button
-            variant="contained"
-            color="default"
-            style={{ marginBottom: 20 }}
-            onClick={() => setForm(false)}
-          >
-            Voltar
-          </Button>
-          <form className={classes.root} noValidate autoComplete="off">
-            <TextField
-              label="Canal / Channel"
-              variant="outlined"
-              name="canal"
-              onChange={onChange}
-              InputLabelProps={{
-                shrink: true
-              }}
-              value={escolha.canal}
-            />
-            <TextField
-              label="Numero / Number"
-              variant="outlined"
-              name="numero"
-              onChange={onChange}
-              InputLabelProps={{
-                shrink: true
-              }}
-              value={escolha.numero}
-            />
-            <TextField
-              label="Nome / Name"
-              variant="outlined"
-              name="nome"
-              onChange={onChange}
-              InputLabelProps={{
-                shrink: true
-              }}
-            />
-            <TextField
-              label="Data / Date"
-              variant="outlined"
-              name="data"
-              onChange={onChange}
-              InputLabelProps={{
-                shrink: true
-              }}
-            />
-            <TextField
-              label="Horario / Time"
-              variant="outlined"
-              name="horario"
-              onChange={onChange}
-              InputLabelProps={{
-                shrink: true
-              }}
-            />
-            <TextField
-              label="Programa / Tv Show"
-              variant="outlined"
-              name="programa"
-              onChange={onChange}
-              InputLabelProps={{
-                shrink: true
-              }}
-            />
-          </form>
-
-          <Button
-            variant="contained"
-            color="primary"
-            style={{ marginTop: 10 }}
-            onClick={() => {
-              onSubmit();
-            }}
-            type="submit"
-          >
-            Enviar / Send
-          </Button>
-        </Grid>
+      {!isSubmitted ? (
+        <FormSignup
+          setForm={setForm}
+          submitForm={submitForm}
+          escolha={escolha}
+        />
+      ) : (
+        <Agenda isSubmitted={isSubmitted} />
       )}
     </div>
   );

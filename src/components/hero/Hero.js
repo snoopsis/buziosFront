@@ -31,7 +31,7 @@ export default function Hero() {
       <Grid container direction="row" justify="center" alignItems="center">
         {detalhes.length !== 0 && (
           <Card
-            style={{ marginTop: 20, marginBottom: 20 }}
+            style={{ marginTop: 20 }}
             className={classes.root}
             elevation={0}
           >

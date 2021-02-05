@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     textTransform: "uppercase"
   }
 }));
-export default function Canais() {
+export default function Agenda() {
   const classes = useStyles();
 
   const [agendamentos, setAgendamentos] = useState([]);
@@ -77,6 +77,7 @@ export default function Canais() {
             expanded={expanded === agenda.id}
             onChange={handleChanges(agenda.id)}
             key={agenda.id}
+            style={{ textAlign: "center" }}
           >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}

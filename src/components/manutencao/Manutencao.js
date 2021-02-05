@@ -100,30 +100,32 @@ export default function Manutencao() {
 
       {isSubmitted === false && (
         <div>
-          {lista.map(manutencao => (
-            <Accordion
-              expanded={expanded === manutencao.id}
-              onChange={handleChanges(manutencao.id)}
-              key={manutencao.id}
-            >
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1bh-content"
-                id="panel1bh-header"
+          <Container style={{ textAlign: "center" }}>
+            {lista.map(manutencao => (
+              <Accordion
+                expanded={expanded === manutencao.id}
+                onChange={handleChanges(manutencao.id)}
+                key={manutencao.id}
               >
-                <Typography className={classes.heading}>
-                  {manutencao.local}
-                </Typography>
-                <Typography className={classes.secondaryHeading}>
-                  {manutencao.nome} {" | "}
-                  <strong>{manutencao.data}</strong>
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>{manutencao.problema}</Typography>
-              </AccordionDetails>
-            </Accordion>
-          ))}
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1bh-content"
+                  id="panel1bh-header"
+                >
+                  <Typography className={classes.heading}>
+                    {manutencao.local}
+                  </Typography>
+                  <Typography className={classes.secondaryHeading}>
+                    {manutencao.nome} {" | "}
+                    <strong>{manutencao.data}</strong>
+                  </Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Typography>{manutencao.problema}</Typography>
+                </AccordionDetails>
+              </Accordion>
+            ))}
+          </Container>
         </div>
       )}
     </div>
