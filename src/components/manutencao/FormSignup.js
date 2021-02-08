@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import Alert from "@material-ui/lab/Alert";
 import Button from "@material-ui/core/Button";
 import validate from "./validateInfo";
 import useForm from "./useForm";
@@ -40,12 +39,6 @@ const FormSignup = ({ submitForm }) => {
   return (
     <React.Fragment>
       <form onSubmit={handleSubmit} noValidate>
-        {errors.primeiroNome && (
-          <Alert severity="error" className={classes.alert}>
-            {errors.primeiroNome}
-          </Alert>
-        )}
-
         <TextField
           label="Primeiro Nome / First Name"
           variant="outlined"
@@ -56,12 +49,10 @@ const FormSignup = ({ submitForm }) => {
           }}
           className={classes.formFields}
           value={values.primeiroNome}
+          required={true}
+          error={errors.primeiroNome}
+          helperText={errors.primeiroNome && errors.primeiroNome}
         />
-        {errors.ultimoNome && (
-          <Alert severity="error" className={classes.alert}>
-            {errors.ultimoNome}
-          </Alert>
-        )}
 
         <TextField
           label="Ultimo Nome / Last Name"
@@ -73,12 +64,10 @@ const FormSignup = ({ submitForm }) => {
           }}
           className={classes.formFields}
           value={values.ultimoNome}
+          required={true}
+          error={errors.ultimoNome}
+          helperText={errors.ultimoNome && errors.ultimoNome}
         />
-        {errors.local && (
-          <Alert severity="error" className={classes.alert}>
-            {errors.local}
-          </Alert>
-        )}
 
         <TextField
           label="Local / Place"
@@ -90,12 +79,10 @@ const FormSignup = ({ submitForm }) => {
           }}
           className={classes.formFields}
           value={values.local}
+          required={true}
+          error={errors.local}
+          helperText={errors.local && errors.local}
         />
-        {errors.horario && (
-          <Alert severity="error" className={classes.alert}>
-            {errors.horario}
-          </Alert>
-        )}
 
         <TextField
           label="Melhor Horario / Best Time to Fix"
@@ -107,12 +94,10 @@ const FormSignup = ({ submitForm }) => {
           }}
           className={classes.formFields}
           value={values.horario}
+          required={true}
+          error={errors.horario}
+          helperText={errors.horario && errors.horario}
         />
-        {errors.problema && (
-          <Alert severity="error" className={classes.alert}>
-            {errors.problema}
-          </Alert>
-        )}
 
         <TextField
           label="Problema / Problem"
@@ -126,6 +111,9 @@ const FormSignup = ({ submitForm }) => {
           rows={4}
           className={classes.formFields}
           value={values.problema}
+          required={true}
+          error={errors.problema}
+          helperText={errors.problema && errors.problema}
         />
 
         <Button

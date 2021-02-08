@@ -73,6 +73,7 @@ const FormSignup = ({ submitForm, props }) => {
                 shrink: true
               }}
               value={values.canal}
+              required={true}
             />
           </Grid>
           <Grid item className={classes.formFields}>
@@ -85,12 +86,8 @@ const FormSignup = ({ submitForm, props }) => {
                 shrink: true
               }}
               value={values.numero}
+              required={true}
             />
-            {errors.nome && (
-              <Alert severity="error" className={classes.alert}>
-                {errors.nome}
-              </Alert>
-            )}
           </Grid>
           <Grid item className={classes.formFields}>
             <TextField
@@ -102,12 +99,10 @@ const FormSignup = ({ submitForm, props }) => {
                 shrink: true
               }}
               value={values.nome}
+              required={true}
+              error={errors.nome}
+              helperText={errors.nome && errors.nome}
             />
-            {errors.data && (
-              <Alert severity="error" className={classes.alert}>
-                {errors.data}
-              </Alert>
-            )}
           </Grid>
           <Grid item className={classes.formFields}>
             <TextField
@@ -119,12 +114,10 @@ const FormSignup = ({ submitForm, props }) => {
                 shrink: true
               }}
               value={values.data}
+              required={true}
+              error={errors.data}
+              helperText={errors.data && errors.data}
             />
-            {errors.horario && (
-              <Alert severity="error" className={classes.alert}>
-                {errors.horario}
-              </Alert>
-            )}
           </Grid>
           <Grid item className={classes.formFields}>
             <TextField
@@ -136,12 +129,10 @@ const FormSignup = ({ submitForm, props }) => {
                 shrink: true
               }}
               value={values.horario}
+              required={true}
+              error={errors.horario}
+              helperText={errors.horario && errors.horario}
             />
-            {errors.programa && (
-              <Alert severity="error" className={classes.alert}>
-                {errors.programa}
-              </Alert>
-            )}
           </Grid>
           <Grid item className={classes.formFields}>
             <TextField
@@ -153,6 +144,9 @@ const FormSignup = ({ submitForm, props }) => {
                 shrink: true
               }}
               value={values.programa}
+              required={true}
+              error={errors.programa}
+              helperText={errors.programa && errors.programa}
             />
           </Grid>
           <Grid item className={classes.formFields}>
