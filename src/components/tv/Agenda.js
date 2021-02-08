@@ -62,7 +62,12 @@ export default function Agenda() {
           AGENDAMENTO DO CANAL 11
         </Typography>
 
-        <Link to="/canais" style={{ textDecoration: "none" }}>
+        <Link
+          to={{
+            pathname: "/canais"
+          }}
+          style={{ textDecoration: "none" }}
+        >
           <Button
             variant="contained"
             color="primary"

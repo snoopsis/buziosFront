@@ -14,8 +14,6 @@ import Paper from "@material-ui/core/Paper";
 import AssignmentTurnedInOutlinedIcon from "@material-ui/icons/AssignmentTurnedInOutlined";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import FormSignup from "./FormSignup";
-import Agenda from "./Agenda";
 import lista from "./lista";
 
 const StyledTableCell = withStyles(theme => ({
@@ -52,18 +50,9 @@ export default function Canais(props) {
   const classes = useStyles();
 
   const [form, setForm] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [escolha, setEscolha] = useState({
-    procurar: "",
-    numero: "",
-    canal: ""
+    procurar: ""
   });
-
-  // Define se o isSubmited e verdadeiro
-  // Com base no callback do useForm
-  function submitForm() {
-    setIsSubmitted(true);
-  }
 
   const onChange = e => {
     const { name, value } = e.target;
@@ -74,12 +63,7 @@ export default function Canais(props) {
   };
 
   // Pega o nome do canal pelo map(row)
-  const pegaCanal = canal => {
-    setEscolha({
-      canal: canal.canal,
-      numero: canal.numero,
-      procurar: escolha.procurar
-    });
+  const pegaCanal = () => {
     setForm(true);
   };
 
@@ -146,10 +130,14 @@ export default function Canais(props) {
                     </StyledTableCell>
                     <StyledTableCell align="right">
                       <Link
-                        to="/canais"
-                        onClick={() =>
-                          pegaCanal({ canal: row.canal, numero: row.numero })
-                        }
+                        to={{
+                          pathname: "/formtv",
+                          state: {
+                            canal: row.canal,
+                            numero: row.numero
+                          }
+                        }}
+                        onClick={pegaCanal}
                       >
                         <AssignmentTurnedInOutlinedIcon
                           style={{ color: "#388e3c" }}
@@ -162,15 +150,6 @@ export default function Canais(props) {
             </Table>
           </TableContainer>
         </Grid>
-      )}
-      {!isSubmitted ? (
-        <FormSignup
-          setForm={setForm}
-          submitForm={submitForm}
-          escolha={escolha}
-        />
-      ) : (
-        <Agenda isSubmitted={isSubmitted} />
       )}
     </div>
   );

@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const useForm = (callback, validate, escolha) => {
+const useForm = (callback, validate, props) => {
   const [values, setValues] = useState({
     nome: "",
     horario: "",
     programa: "",
-    data: ""
+    data: "",
+    canal: props.location.state.canal,
+    numero: props.location.state.numero
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -27,8 +29,8 @@ const useForm = (callback, validate, escolha) => {
 
     axios
       .post("https://api.migueldias.net/buzios/novoCanal", {
-        canal: escolha.canal,
-        numero: escolha.numero,
+        canal: values.canal,
+        numero: values.numero,
         nome: values.nome,
         horario: values.horario,
         programa: values.programa,

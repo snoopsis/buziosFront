@@ -30,12 +30,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const FormSignup = ({ submitForm, setForm, escolha }) => {
+const FormSignup = ({ submitForm, props }) => {
   const classes = useStyles();
   const { handleChange, handleSubmit, values, errors } = useForm(
     submitForm,
     validate,
-    escolha
+    props
   );
 
   return (
@@ -52,7 +52,7 @@ const FormSignup = ({ submitForm, setForm, escolha }) => {
             variant="contained"
             color="default"
             style={{ marginBottom: 30 }}
-            onClick={() => setForm(false)}
+            onClick={() => props.history.push("/canais")}
           >
             Voltar
           </Button>
@@ -72,7 +72,7 @@ const FormSignup = ({ submitForm, setForm, escolha }) => {
               InputLabelProps={{
                 shrink: true
               }}
-              value={escolha.canal}
+              value={values.canal}
             />
           </Grid>
           <Grid item className={classes.formFields}>
@@ -84,7 +84,7 @@ const FormSignup = ({ submitForm, setForm, escolha }) => {
               InputLabelProps={{
                 shrink: true
               }}
-              value={escolha.numero}
+              value={values.numero}
             />
             {errors.nome && (
               <Alert severity="error" className={classes.alert}>
