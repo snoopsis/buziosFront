@@ -30,11 +30,7 @@ export default function Hero() {
     <React.Fragment>
       <Grid container direction="row" justify="center" alignItems="center">
         {detalhes.length !== 0 && (
-          <Card
-            style={{ marginTop: 20 }}
-            className={classes.root}
-            elevation={0}
-          >
+          <Card className={classes.root} elevation={0}>
             <CardActionArea>
               <Grid
                 container

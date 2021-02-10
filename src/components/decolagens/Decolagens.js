@@ -107,7 +107,7 @@ export default function Decolagens(props) {
             </Grid>
           </Grid>
           <Button
-            color="f0f0f0"
+            style={{ color: "#000" }}
             size="large"
             startIcon={<ArrowBackIcon />}
             onClick={() => props.history.push("/")}

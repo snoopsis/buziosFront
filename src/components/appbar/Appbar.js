@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import HowToRegIcon from "@material-ui/icons/HowToReg";
 import DirectionsBoat from "@material-ui/icons/DirectionsBoat";
 import LiveTvIcon from "@material-ui/icons/LiveTv";
-import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
+import HomeIcon from "@material-ui/icons/Home";
 import Menu from "@material-ui/icons/Menu";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
@@ -97,11 +97,9 @@ export default function Appbar() {
         >
           <ListItem>
             <ListItemIcon>
-              <FlightTakeoffIcon />
+              <HomeIcon />
             </ListItemIcon>
-            <ListItemText style={{ marginTop: 11 }}>
-              Voos Metereologia
-            </ListItemText>
+            <ListItemText style={{ marginTop: 11 }}>Inicio</ListItemText>
           </ListItem>
         </Link>
         <Link

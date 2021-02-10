@@ -105,7 +105,7 @@ export default function Previsao(props) {
           </Grid>
           <Grid item xs={12}>
             <Button
-              color="f0f0f0"
+              style={{ color: "#000" }}
               size="large"
               startIcon={<ArrowBackIcon />}
               onClick={() => props.history.push("/")}

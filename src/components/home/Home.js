@@ -14,8 +14,6 @@ const Home = () => {
         <Paper
           elevation={0}
           style={{
-            marginTop: "10px",
-            marginBottom: "5px",
             fontWeight: "100",
 
             color: "#f4f4f4",
@@ -41,7 +39,6 @@ const Home = () => {
         <Paper
           elevation={0}
           style={{
-            marginBottom: "5px",
             fontWeight: "100",
             marginTop: 20,
             color: "#f4f4f4",
@@ -73,7 +70,6 @@ const Home = () => {
         <Paper
           elevation={0}
           style={{
-            marginBottom: "5px",
             fontWeight: "100",
             marginTop: 20,
             color: "#fff",
