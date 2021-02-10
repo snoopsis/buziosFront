@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { Link } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/styles";
 import { createMuiTheme, makeStyles } from "@material-ui/core/styles";
-import blueGrey from "@material-ui/core/colors/blueGrey";
+// import blueGrey from "@material-ui/core/colors/blueGrey";
 import red from "@material-ui/core/colors/red";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -24,7 +24,8 @@ import SettingsIcon from "@material-ui/icons/Settings";
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: blueGrey[800]
+      // main: blueGrey[800]
+      main: "#212121"
     },
     secondary: {
       main: red[500]
@@ -41,12 +42,6 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1
-  },
-  banner: {
-    width: "100%",
-    minHeight: 210,
-    marginBottom: 10,
-    maxWidth: 500
   },
   list: {
     width: 250
@@ -83,7 +78,7 @@ export default function Appbar() {
       onClick={toggleDrawer("left", false)}
       onKeyDown={toggleDrawer("left", false)}
     >
-      <List style={{ backgroundColor: "#37474f" }}>
+      <List style={{ backgroundColor: "#212121" }}>
         <ListItem>
           <ListItemIcon>
             <DirectionsBoat style={{ color: "#fff" }} />

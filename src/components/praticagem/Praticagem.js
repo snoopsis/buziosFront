@@ -13,6 +13,8 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
+import Button from "@material-ui/core/Button";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 const theme = createMuiTheme({
   palette: {
@@ -43,17 +45,17 @@ const useStyles = makeStyles(theme => ({
     fontWeight: "100"
   },
   tableTitle: {
-    marginTop: "10px",
     marginBottom: "5px",
     fontWeight: "100",
-    marginLeft: "5px",
+
     color: "#fff",
     height: "100px",
-    backgroundColor: "#9c27b0"
+    backgroundColor: "#424242",
+    textAlign: "center"
   }
 }));
 
-export default function Praticagem() {
+export default function Praticagem(props) {
   useEffect(() => {
     getPraticagem();
     setInterval(() => getPraticagem(), 15000);
@@ -83,22 +85,20 @@ export default function Praticagem() {
       {rjpilots.length !== 0 && (
         <ThemeProvider theme={theme}>
           <Paper elevation={0} className={classes.tableTitle}>
-            <div style={{ paddingLeft: "20px", paddingTop: "20px" }}>
-              <Typography variant="body1" component="h1">
-                Praticagem Rio / RJ Pilots
-              </Typography>
-            </div>
-            <div
-              style={{
-                paddingLeft: "20px",
-                paddingTop: "15px"
-              }}
-            >
-              <Typography variant="body2" component="h2">
-                Programacao da Praticagem Rio de Janeiro
-              </Typography>
-            </div>
+            <Typography variant="body1" component="h1" style={{ padding: 15 }}>
+              Praticagem Rio / RJ Pilots
+            </Typography>
+
+            <Typography variant="body2" component="h2">
+              Programacao da Praticagem Rio de Janeiro
+            </Typography>
           </Paper>
+          <Button
+            color="f0f0f0"
+            size="large"
+            startIcon={<ArrowBackIcon />}
+            onClick={() => props.history.push("/")}
+          ></Button>
           <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="simple table">
               <TableHead>

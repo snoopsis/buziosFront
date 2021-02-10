@@ -6,14 +6,10 @@ const Footer = () => {
     <div
       style={{
         backgroundColor: "#fff",
-        width: "100vw",
-        position: "relative",
-        left: "50%",
-        right: "50%",
-        marginLeft: "-50vw",
-        marginRight: "-50vw",
-        marginTop: "15px",
-        height: "55px"
+        overflow: "hidden",
+        position: "fixed",
+        bottom: 0,
+        width: "100%"
       }}
       align="center"
     >

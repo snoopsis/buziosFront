@@ -10,20 +10,20 @@ import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import Typography from "@material-ui/core/Typography";
-import Chip from "@material-ui/core/Chip";
 import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 const useStyles = makeStyles({
   root: {
-    width: "100%",
-    marginBottom: 20
+    width: "100%"
   },
   container: {
-    maxHeight: 440
+    maxHeight: 550
   }
 });
 
-export default function Decolagens() {
+export default function Decolagens(props) {
   useEffect(() => {
     getDecolagens();
     setInterval(() => getDecolagens(), 15000);
@@ -72,30 +72,46 @@ export default function Decolagens() {
 
   return (
     <Paper className={classes.root}>
-      {decolagens.length !== 0 && (
+      {decolagens.length !== 0 ? (
         <TableContainer className={classes.container}>
           <Grid container direction="row" justify="center" alignItems="center">
             <Grid item xs={12} style={{ textAlign: "center" }}>
-              <Chip
-                label="Decolagens em Tempo Real"
-                color="primary"
-                style={{ marginBottom: 20 }}
-              />
-            </Grid>
+              <Paper
+                elevation={0}
+                style={{
+                  marginBottom: "5px",
+                  fontWeight: "100",
 
-            <Grid
-              item
-              xs={12}
-              style={{
-                textAlign: "center",
-                marginBottom: 20
-              }}
-            >
-              <Typography variant="body1">
-                Todos os Voos Programados no SITAER
-              </Typography>
+                  height: "100px",
+                  backgroundColor: "#212121",
+                  textAlign: "center"
+                }}
+              >
+                <Typography
+                  variant="body1"
+                  component="h1"
+                  style={{
+                    padding: 15,
+                    textTransform: "uppercase",
+                    color: "#fff",
+                    fontWeight: 400
+                  }}
+                >
+                  Decolagens em Tempo Real
+                </Typography>
+
+                <Typography variant="body1" style={{ color: "#fff" }}>
+                  Todos os Voos Programados no SITAER
+                </Typography>
+              </Paper>
             </Grid>
           </Grid>
+          <Button
+            color="f0f0f0"
+            size="large"
+            startIcon={<ArrowBackIcon />}
+            onClick={() => props.history.push("/")}
+          ></Button>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
@@ -138,6 +154,39 @@ export default function Decolagens() {
             onChangeRowsPerPage={handleChangeRowsPerPage}
           />
         </TableContainer>
+      ) : (
+        <Grid container direction="row" justify="center" alignItems="center">
+          <Grid item xs={12} style={{ textAlign: "center" }}>
+            <Paper
+              elevation={0}
+              style={{
+                marginBottom: "5px",
+                fontWeight: "100",
+
+                height: "100px",
+                backgroundColor: "#212121",
+                textAlign: "center"
+              }}
+            >
+              <Typography
+                variant="body1"
+                component="h1"
+                style={{
+                  padding: 15,
+                  textTransform: "uppercase",
+                  color: "#fff",
+                  fontWeight: 400
+                }}
+              >
+                Decolagens em Tempo Real
+              </Typography>
+
+              <Typography variant="body1" style={{ color: "#fff" }}>
+                Hoje ate ao momento ainda nao existem Decolagens
+              </Typography>
+            </Paper>
+          </Grid>
+        </Grid>
       )}
     </Paper>
   );

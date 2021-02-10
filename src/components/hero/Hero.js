@@ -44,9 +44,9 @@ export default function Hero() {
               >
                 <CardMedia
                   component="img"
-                  image="dof.png"
+                  image="heli-logo.png"
                   title={detalhes[0].area}
-                  style={{ width: 100 }}
+                  style={{ width: 150 }}
                 />
               </Grid>
               <CardContent>
@@ -55,16 +55,15 @@ export default function Hero() {
                   component="h2"
                   style={{ textAlign: "center" }}
                 >
-                  {detalhes[0].posicao}
+                  Posição {detalhes[0].posicao}
                 </Typography>
-
                 <Typography
                   variant="body2"
                   color="textSecondary"
                   component="p"
                   style={{ textAlign: "center" }}
                 >
-                  {`${detalhes[0].atualizacao}`}
+                  Atualizado em {`${detalhes[0].atualizacao}`}
                 </Typography>
               </CardContent>
             </CardActionArea>

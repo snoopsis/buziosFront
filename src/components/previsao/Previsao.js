@@ -3,7 +3,7 @@ import vesselContext from "../../context/details/vesselContext";
 import { createMuiTheme, makeStyles } from "@material-ui/core/styles";
 import deepPurple from "@material-ui/core/colors/deepPurple";
 import red from "@material-ui/core/colors/red";
-import cyan from "@material-ui/core/colors/cyan";
+// import cyan from "@material-ui/core/colors/cyan";
 import { ThemeProvider } from "@material-ui/styles";
 import Typography from "@material-ui/core/Typography";
 import orange from "@material-ui/core/colors/orange";
@@ -13,11 +13,14 @@ import Paper from "@material-ui/core/Paper";
 import HighlightOffRoundedIcon from "@material-ui/icons/HighlightOffRounded";
 import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
 import ReportProblemRoundedIcon from "@material-ui/icons/ReportProblemRounded";
+import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
+import Button from "@material-ui/core/Button";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Chart from "../chart/Chart";
 
 const theme = createMuiTheme({
@@ -49,17 +52,15 @@ const useStyles = makeStyles(theme => ({
     fontWeight: "100"
   },
   tableTitle: {
-    marginTop: "10px",
-    marginBottom: "5px",
     fontWeight: "100",
-    marginLeft: "5px",
     color: "#f4f4f4",
     height: "100px",
-    backgroundColor: cyan[400]
+    backgroundColor: "#424242",
+    textAlign: "center"
   }
 }));
 
-export default function Previsao() {
+export default function Previsao(props) {
   useEffect(() => {
     getBuziosWeather();
     // eslint-disable-next-line
@@ -86,23 +87,32 @@ export default function Previsao() {
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <Paper elevation={0} className={classes.tableTitle}>
-          <div style={{ paddingLeft: "20px", paddingTop: "20px" }}>
-            <Typography variant="body1" component="h1">
-              Condições Meteorológicas
-            </Typography>
-          </div>
-          <div
-            style={{
-              paddingLeft: "20px",
-              paddingTop: "15px"
-            }}
-          >
-            <Typography variant="body2" component="h2">
-              Previsão de Mar e Clima no Skandi Buzios
-            </Typography>
-          </div>
-        </Paper>
+        <Grid container alignItems="center">
+          <Grid item xs={12}>
+            <Paper elevation={0} className={classes.tableTitle}>
+              <Typography
+                variant="body1"
+                component="h1"
+                style={{ padding: 15 }}
+              >
+                Condições Meteorológicas
+              </Typography>
+
+              <Typography variant="body2" component="h2">
+                Previsão de Mar e Clima no Skandi Buzios
+              </Typography>
+            </Paper>
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              color="f0f0f0"
+              size="large"
+              startIcon={<ArrowBackIcon />}
+              onClick={() => props.history.push("/")}
+            ></Button>
+          </Grid>
+        </Grid>
+
         <TableContainer component={Paper}>
           <Table className={classes.table} aria-label="simple table">
             <TableHead>
