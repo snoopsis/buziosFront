@@ -48,6 +48,9 @@ const useStyles = makeStyles(theme => ({
   },
   fullList: {
     width: "auto"
+  },
+  discord: {
+    width: 40
   }
 }));
 
@@ -172,17 +175,22 @@ export default function Appbar() {
                 {list("Left")}
               </Drawer>
 
-              {/* <Link
-                to="/chegada"
+              <a
+                href="https://discord.gg/KyxDCbdSbY"
                 style={{
                   color: "#fff",
                   textDecoration: "none",
                   marginLeft: 15
                 }}
+                target="blank_"
               >
                 {" "}
-                <HowToRegIcon />
-              </Link> */}
+                <img
+                  src="discord.png"
+                  className={classes.discord}
+                  alt="discord"
+                />
+              </a>
             </Toolbar>
           </AppBar>
           <Toolbar />
