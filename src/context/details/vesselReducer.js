@@ -50,11 +50,7 @@ export default (state, action) => {
       return {
         ...state,
         voosBuzios: action.payload.filter(
-          i =>
-            (i.data === action.diaHoje && i.procedencia === "Macae / SKBU") ||
-            i.procedencia === "Cabo Frio / SKBU" ||
-            i.procedencia === "Jacarepagua / SKBU" ||
-            i.procedencia === "Vitoria / SKBU"
+          i => i.data === action.diaHoje && i.procedencia.match("SKBU")
         )
       };
 
