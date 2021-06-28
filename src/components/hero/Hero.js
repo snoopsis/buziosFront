@@ -24,11 +24,11 @@ export default function Hero() {
 
   const VesselContext = useContext(vesselContext);
 
-  const { getVesselDetails, detalhes } = VesselContext;
+  const { getVesselDetails, detalhes, prevHoje } = VesselContext;
 
   return (
     <React.Fragment>
-      <Grid container direction="row" justify="center" alignItems="center">
+      <Grid container direction="row" justify="center" alignItems="center" style={{marginBottom: -20}}>
         {detalhes.length !== 0 && (
           <Card className={classes.root} elevation={0}>
             <CardActionArea>
@@ -40,9 +40,9 @@ export default function Hero() {
               >
                 <CardMedia
                   component="img"
-                  image="heli-logo.png"
+                  image={prevHoje.map(i => i.prev)[0] === "Favoravel" ? "https://imagens.migueldias.net/bomtempo.png": "https://imagens.migueldias.net/mautempo.jpeg"}
                   title={detalhes[0].area}
-                  style={{ width: 150 }}
+                 
                 />
               </Grid>
               <CardContent>

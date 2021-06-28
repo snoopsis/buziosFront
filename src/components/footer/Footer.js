@@ -7,11 +7,14 @@ const Footer = () => {
       style={{
         backgroundColor: "#f5f5f5",
         overflow: "hidden",
-        position: "fixed",
+        position: "relative",
         bottom: 0,
-        width: "100%",
-        marginLeft: -8,
-        height: 20
+        width: "!important 100%",
+        height: 20,
+        marginTop: 20,
+        marginBottom: -10,
+        marginLeft: -10,
+        marginRight: -10
       }}
       align="center"
     >
@@ -23,7 +26,7 @@ const Footer = () => {
         }}
         variant="subtitle2"
       >
-        @{" "}
+       created by @{" "}
         <a
           href="https://migueldias.net"
           style={{ textDecoration: "none", color: "#3c4858" }}

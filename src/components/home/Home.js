@@ -4,6 +4,7 @@ import Voos from "../voos/Voos";
 import Hero from "../hero/Hero";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
+import Footer from "../footer/Footer";
 
 const Home = () => {
   return (
@@ -35,7 +36,7 @@ const Home = () => {
           </Typography>
         </Paper>
       </Link>
-      <Link to="/decolagens" style={{ textDecoration: "none" }}>
+      {/* <Link to="/decolagens" style={{ textDecoration: "none" }}>
         <Paper
           elevation={0}
           style={{
@@ -64,7 +65,7 @@ const Home = () => {
             Todos os Voos Programados no SITAER
           </Typography>
         </Paper>
-      </Link>
+      </Link> */}
 
       <Link to="/praticagem" style={{ textDecoration: "none" }}>
         <Paper
@@ -91,6 +92,7 @@ const Home = () => {
           </Typography>
         </Paper>
       </Link>
+      <Footer />
     </div>
   );
 };

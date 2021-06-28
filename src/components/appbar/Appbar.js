@@ -175,7 +175,7 @@ export default function Appbar() {
                 {list("Left")}
               </Drawer>
 
-              <a
+              {/* <a
                 href="https://discord.gg/KyxDCbdSbY"
                 style={{
                   color: "#fff",
@@ -190,7 +190,7 @@ export default function Appbar() {
                   className={classes.discord}
                   alt="discord"
                 />
-              </a>
+              </a> */}
             </Toolbar>
           </AppBar>
           <Toolbar />
