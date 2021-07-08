@@ -50,7 +50,15 @@ export default (state, action) => {
       return {
         ...state,
         voosBuzios: action.payload.filter(
-          i => i.data === action.diaHoje && i.procedencia.match("SKBU")
+          i =>
+            i.data === action.diaHoje ||
+            action.amanha ||
+            action.doisDias ||
+            action.tresDias ||
+            action.quatroDias ||
+              (action.ontem &&
+                i.procedencia.match("SKBU") &&
+                i.obs.match("Previsto"))
         )
       };
 

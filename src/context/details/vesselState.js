@@ -21,6 +21,9 @@ const VesselState = props => {
     praticagem: [],
     decolagens: [],
     voosBuzios: [],
+    ontem: moment()
+      .add(-1, "Day")
+      .format("DD/MM/YYYY"),
     amanha: moment()
       .add(+1, "Day")
       .format("DD/MM/YYYY"),
@@ -133,7 +136,12 @@ const VesselState = props => {
       dispatch({
         type: GET_VOOS_BUZIOS,
         payload: res.data,
-        diaHoje: state.diaHoje
+        ontem: state.ontem,
+        diaHoje: state.diaHoje,
+        amanha: state.amanha,
+        doisDias: state.doisDias,
+        tresDias: state.tresDias,
+        quatroDias: state.quatroDias
       });
     } catch (err) {
       dispatch({ type: GET_ERROR });

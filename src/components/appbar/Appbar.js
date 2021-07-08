@@ -60,6 +60,16 @@ export default function Appbar() {
     left: false
   });
 
+  // const [url, setURL] = useState();
+
+  // useEffect(() => {
+  //   setURL(window.location.pathname);
+
+  //   // eslint-disable-next-line
+  // }, [url]);
+
+  // console.log(url);
+
   const toggleDrawer = (anchor, open) => event => {
     if (
       event &&
@@ -164,7 +174,11 @@ export default function Appbar() {
           <AppBar position="fixed">
             <Toolbar>
               <Typography variant="h6" className={classes.title}>
+                {/* {url === "/" ? ( */}
                 <Menu onClick={toggleDrawer("left", true)} />
+                {/* ) : (
+                  ""
+                )} */}
               </Typography>
 
               <Drawer

@@ -35,7 +35,28 @@ export default function Voos() {
   };
 
   const voosDeHoje = voosBuzios.filter(
-    i => i.data === moment().format("DD/MM/YYYY")
+    i =>
+      i.data === moment().format("DD/MM/YYYY") ||
+      i.data ===
+        moment()
+          .add(+1, "days")
+          .format("DD/MM/YYYY") ||
+      i.data ===
+        moment()
+          .add(+2, "days")
+          .format("DD/MM/YYYY") ||
+      i.data ===
+        moment()
+          .add(+3, "days")
+          .format("DD/MM/YYYY") ||
+      i.data ===
+        moment()
+          .add(+4, "days")
+          .format("DD/MM/YYYY") ||
+      i.data ===
+        moment()
+          .add(-1, "days")
+          .format("DD/MM/YYYY")
   );
 
   return (
@@ -48,7 +69,12 @@ export default function Voos() {
         style={{ marginBottom: 20 }}
       >
         {voosDeHoje.map(i => (
-          <Grid item xs={12} key={i.id} style={{ textAlign: "center" }}>
+          <Grid
+            item
+            xs={12}
+            key={i.id}
+            style={{ textAlign: "center", marginBottom: 10 }}
+          >
             <Accordion
               expanded={expanded === i.id}
               onChange={handleChanges(i.id)}
@@ -59,10 +85,11 @@ export default function Voos() {
                 aria-controls="panel1bh-content"
                 id="panel1bh-header"
               >
-                <Typography>{i.horario}</Typography>
+                <Typography>{i.data.slice(0, 5)}</Typography>
 
                 <Typography style={{ marginLeft: 5 }}>
-                  <strong> {i.prefixo}</strong>
+                  {" "}
+                  <strong>{i.horario}</strong>
                 </Typography>
                 <Typography
                   style={{ fontSize: "12px", marginTop: 3, marginLeft: 5 }}
@@ -73,7 +100,7 @@ export default function Voos() {
               <AccordionDetails>
                 <Typography>
                   {" | "}
-                  {i.modelo} {" | "} {i.empresa_tt}
+                  {i.modelo} {" | "} {i.empresa_tt} {" | "} {i.prefixo}
                 </Typography>
               </AccordionDetails>
             </Accordion>

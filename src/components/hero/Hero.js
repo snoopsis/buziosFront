@@ -28,7 +28,13 @@ export default function Hero() {
 
   return (
     <React.Fragment>
-      <Grid container direction="row" justify="center" alignItems="center" style={{marginBottom: -20}}>
+      <Grid
+        container
+        direction="row"
+        justify="center"
+        alignItems="center"
+        style={{ marginBottom: -20 }}
+      >
         {detalhes.length !== 0 && (
           <Card className={classes.root} elevation={0}>
             <CardActionArea>
@@ -40,9 +46,12 @@ export default function Hero() {
               >
                 <CardMedia
                   component="img"
-                  image={prevHoje.map(i => i.prev)[0] === "Favoravel" ? "https://imagens.migueldias.net/bomtempo.png": "https://imagens.migueldias.net/mautempo.jpeg"}
+                  image={
+                    prevHoje.map(i => i.prev)[0] === "Favoravel"
+                      ? "https://imagens.migueldias.net/bomtempo.png"
+                      : "https://imagens.migueldias.net/mautempo.jpeg"
+                  }
                   title={detalhes[0].area}
-                 
                 />
               </Grid>
               <CardContent>
@@ -57,7 +66,7 @@ export default function Hero() {
                   variant="body2"
                   color="textSecondary"
                   component="p"
-                  style={{ textAlign: "center" }}
+                  style={{ textAlign: "center", marginBottom: 15 }}
                 >
                   Atualizado em {`${detalhes[0].atualizacao}`}
                 </Typography>

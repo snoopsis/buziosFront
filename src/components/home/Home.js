@@ -1,14 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
 import Voos from "../voos/Voos";
 import Hero from "../hero/Hero";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Footer from "../footer/Footer";
 
+const useStyles = makeStyles({
+  container: {
+    display: "grid",
+    justifyContent: "center"
+  }
+});
+
 const Home = () => {
+  const classes = useStyles();
+
   return (
-    <div>
+    <div className={classes.container}>
       <Hero />
       <Voos />
       <Link to="/previsao" style={{ textDecoration: "none" }}>
