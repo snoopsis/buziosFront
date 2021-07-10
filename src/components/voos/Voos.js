@@ -37,26 +37,31 @@ export default function Voos() {
   const voosDeHoje = voosBuzios.filter(
     i =>
       (i.decolagem.length === 0 && i.data === moment().format("DD/MM/YYYY")) ||
-      i.data ===
-        moment()
-          .add(+1, "days")
-          .format("DD/MM/YYYY") ||
-      i.data ===
-        moment()
-          .add(+2, "days")
-          .format("DD/MM/YYYY") ||
-      i.data ===
-        moment()
-          .add(+3, "days")
-          .format("DD/MM/YYYY") ||
-      i.data ===
-        moment()
-          .add(+4, "days")
-          .format("DD/MM/YYYY") ||
-      i.data ===
-        moment()
-          .add(-1, "days")
-          .format("DD/MM/YYYY")
+      (i.decolagem.length === 0 &&
+        i.data ===
+          moment()
+            .add(+1, "days")
+            .format("DD/MM/YYYY")) ||
+      (i.decolagem.length === 0 &&
+        i.data ===
+          moment()
+            .add(+2, "days")
+            .format("DD/MM/YYYY")) ||
+      (i.decolagem.length === 0 &&
+        i.data ===
+          moment()
+            .add(+3, "days")
+            .format("DD/MM/YYYY")) ||
+      (i.decolagem.length === 0 &&
+        i.data ===
+          moment()
+            .add(+4, "days")
+            .format("DD/MM/YYYY")) ||
+      (i.decolagem.length === 0 &&
+        i.data ===
+          moment()
+            .add(-1, "days")
+            .format("DD/MM/YYYY"))
   );
 
   return (
