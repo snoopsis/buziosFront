@@ -36,7 +36,7 @@ export default function Voos() {
 
   const voosDeHoje = voosBuzios.filter(
     i =>
-      i.data === moment().format("DD/MM/YYYY") ||
+      (i.decolagem.length === 0 && i.data === moment().format("DD/MM/YYYY")) ||
       i.data ===
         moment()
           .add(+1, "days")

@@ -52,13 +52,11 @@ export default (state, action) => {
         voosBuzios: action.payload.filter(
           i =>
             i.data === action.diaHoje ||
-            action.amanha ||
-            action.doisDias ||
-            action.tresDias ||
-            action.quatroDias ||
-              (action.ontem &&
-                i.procedencia.match("SKBU") &&
-                i.obs.match("Previsto"))
+            i.data === action.amanha ||
+            i.data === action.doisDias ||
+            i.data === action.tresDias ||
+            i.data === action.quatroDias ||
+            i.data === action.ontem
         )
       };
 
